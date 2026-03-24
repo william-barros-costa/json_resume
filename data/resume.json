@@ -1,0 +1,180 @@
+{
+  "basics": {
+    "name": "Jane Smith",
+    "label": "Software Engineer",
+    "email": "jane@example.com",
+    "phone": "+1 555 000 0000",
+    "url": "https://janesmith.dev",
+    "summary": "Full-stack engineer with 8 years experience building data-intensive systems and leading small engineering teams.",
+    "location": {
+      "city": "Berlin",
+      "countryCode": "DE",
+      "region": "Berlin"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "janesmith",
+        "url": "https://github.com/janesmith"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "janesmith",
+        "url": "https://linkedin.com/in/janesmith"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Acme Corp",
+      "position": "Senior Backend Engineer",
+      "url": "https://acme.com",
+      "startDate": "2021-03",
+      "endDate": "",
+      "tags": ["backend", "developer"],
+      "summary": "Led backend platform work for a data-intensive SaaS product serving 50k daily active users.",
+      "highlights": [
+        "Built event-driven pipeline handling 10k msg/s with 99.95% uptime",
+        "Reduced p99 latency by 40% through query optimisation and caching",
+        "Mentored 3 junior engineers and led bi-weekly architecture reviews"
+      ],
+      "technologies": [
+        {
+          "name": "Python",
+          "category": "backend",
+          "purpose": "Core language for the ETL pipeline and REST API services",
+          "rationale": "Chosen for its rich data ecosystem (pandas, SQLAlchemy) and strong team familiarity, enabling fast iteration"
+        },
+        {
+          "name": "PostgreSQL",
+          "category": "database",
+          "purpose": "Primary data store for user accounts, transactions, and audit logs",
+          "rationale": "Required ACID compliance and complex join support for financial data integrity; existing team expertise reduced onboarding time"
+        },
+        {
+          "name": "Kafka",
+          "category": "infrastructure",
+          "purpose": "Event bus for decoupling microservices and handling real-time data ingestion",
+          "rationale": "Needed durable, ordered message delivery at scale without operating a custom broker; log compaction simplified state reconstruction"
+        },
+        {
+          "name": "Redis",
+          "category": "database",
+          "purpose": "Session cache and rate-limiting store",
+          "rationale": "Sub-millisecond reads solved the latency bottleneck in auth middleware; atomic operations simplified the rate-limit implementation"
+        },
+        {
+          "name": "Docker",
+          "category": "infrastructure",
+          "purpose": "Containerisation of all services for consistent dev and prod environments",
+          "rationale": "Eliminated environment drift between developer machines and CI; simplified Kubernetes deployment manifests"
+        }
+      ]
+    },
+    {
+      "name": "Beta Inc",
+      "position": "Full-Stack Engineer",
+      "url": "https://betainc.io",
+      "startDate": "2018-06",
+      "endDate": "2021-02",
+      "tags": ["developer", "fullstack"],
+      "summary": "Built and maintained a customer-facing React dashboard and the Node.js backend that powered it.",
+      "highlights": [
+        "Delivered dashboard redesign that increased user retention by 18%",
+        "Migrated monolith to service-oriented architecture over 6 months with zero downtime",
+        "Introduced automated testing, raising coverage from 12% to 74%"
+      ],
+      "technologies": [
+        {
+          "name": "React",
+          "category": "frontend",
+          "purpose": "Primary UI framework for the customer dashboard",
+          "rationale": "Component model matched the design system structure; large ecosystem of chart and table libraries reduced build time"
+        },
+        {
+          "name": "TypeScript",
+          "category": "frontend",
+          "purpose": "Static typing across frontend and shared API contracts",
+          "rationale": "Caught a class of runtime errors at compile time; shared types between frontend and backend eliminated contract drift"
+        },
+        {
+          "name": "Node.js",
+          "category": "backend",
+          "purpose": "REST API and WebSocket server for the dashboard backend",
+          "rationale": "Shared language with the frontend team reduced context switching; non-blocking I/O handled concurrent WebSocket connections efficiently"
+        },
+        {
+          "name": "PostgreSQL",
+          "category": "database",
+          "purpose": "Relational store for customer data, events, and billing records",
+          "rationale": "Consistent choice with company standards; JSONB columns provided flexibility for semi-structured event payloads without a separate document store"
+        }
+      ]
+    },
+    {
+      "name": "Gamma Studio",
+      "position": "Junior Developer",
+      "url": "https://gammastudio.dev",
+      "startDate": "2016-09",
+      "endDate": "2018-05",
+      "tags": ["developer", "frontend"],
+      "summary": "Developed features for a content management platform used by media companies.",
+      "highlights": [
+        "Built a drag-and-drop page builder component used by 200+ clients",
+        "Optimised image delivery pipeline, cutting average page load by 1.2s"
+      ],
+      "technologies": [
+        {
+          "name": "Vue.js",
+          "category": "frontend",
+          "purpose": "UI framework for the page builder and CMS editor interface",
+          "rationale": "Gentler learning curve than React for a junior team; two-way data binding simplified form-heavy CMS workflows"
+        },
+        {
+          "name": "PHP",
+          "category": "backend",
+          "purpose": "Server-side rendering and CMS API",
+          "rationale": "Existing codebase was PHP/Laravel; contributed within established patterns while learning backend fundamentals"
+        },
+        {
+          "name": "MySQL",
+          "category": "database",
+          "purpose": "Content and user data storage",
+          "rationale": "Standard choice within the Laravel ecosystem; existing DBA expertise in the team"
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Technical University of Berlin",
+      "area": "Computer Science",
+      "studyType": "Bachelor of Science",
+      "startDate": "2012-10",
+      "endDate": "2016-07",
+      "score": "1.8 (German scale)"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Backend",
+      "keywords": ["Python", "Node.js", "Go", "REST APIs", "GraphQL"]
+    },
+    {
+      "name": "Frontend",
+      "keywords": ["React", "TypeScript", "Next.js", "Vue.js", "Tailwind CSS"]
+    },
+    {
+      "name": "Databases",
+      "keywords": ["PostgreSQL", "MySQL", "Redis", "MongoDB"]
+    },
+    {
+      "name": "Infrastructure",
+      "keywords": ["Kafka", "Docker", "Kubernetes", "AWS", "GitHub Actions"]
+    }
+  ],
+  "languages": [
+    { "language": "English", "fluency": "Native" },
+    { "language": "German", "fluency": "Professional" }
+  ]
+}
