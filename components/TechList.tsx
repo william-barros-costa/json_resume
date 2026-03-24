@@ -1,4 +1,5 @@
 import type { Technology, TechLevel } from "@/lib/types";
+import TechPill from "./TechPill";
 
 interface TechListProps {
   technologies: Technology[];
@@ -18,29 +19,26 @@ export default function TechList({ technologies, techLevel, techFilter }: TechLi
 
   if (techLevel === "names") {
     return (
-      <div className="flex flex-wrap gap-1.5 mt-2">
+      <div className="flex flex-wrap gap-1.5 mt-3">
         {visible.map((t) => (
-          <span
-            key={t.name}
-            className="px-2 py-0.5 text-xs bg-gray-100 text-gray-700 rounded border border-gray-200"
-          >
-            {t.name}
-          </span>
+          <TechPill key={t.name} name={t.name} />
         ))}
       </div>
     );
   }
 
   return (
-    <ul className="mt-2 space-y-2">
+    <ul className="mt-3 space-y-2">
       {visible.map((t) => (
         <li key={t.name} className="text-sm">
-          <span className="font-medium text-gray-800">{t.name}</span>
-          {t.purpose && (
-            <span className="text-gray-600"> — {t.purpose}</span>
-          )}
+          <div className="flex items-center gap-2">
+            <TechPill name={t.name} />
+            {t.purpose && (
+              <span className="text-gray-600">{t.purpose}</span>
+            )}
+          </div>
           {techLevel === "rationale" && t.rationale && (
-            <p className="mt-0.5 text-xs text-gray-500 italic pl-2 border-l-2 border-gray-200">
+            <p className="mt-1 text-xs text-gray-500 italic pl-2 border-l-2 border-gray-200">
               {t.rationale}
             </p>
           )}

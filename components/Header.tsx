@@ -1,5 +1,7 @@
 import type { Basics } from "@/lib/types";
 
+const ACCENT = "#8B1C1C";
+
 interface HeaderProps {
   basics: Basics;
 }
@@ -7,46 +9,54 @@ interface HeaderProps {
 export default function Header({ basics }: HeaderProps) {
   const { name, label, email, phone, url, location, profiles, summary } = basics;
 
-  return (
-    <header className="mb-8">
-      <h1 className="text-3xl font-bold text-gray-900">{name}</h1>
-      <p className="text-lg text-gray-600 mt-0.5">{label}</p>
+  const contactItems = [
+    email && (
+      <a key="email" href={`mailto:${email}`} className="hover:opacity-70 no-print-url">
+        {email}
+      </a>
+    ),
+    phone && <span key="phone">{phone}</span>,
+    location && (
+      <span key="location">
+        {location.city}, {location.countryCode}
+      </span>
+    ),
+    url && (
+      <a key="url" href={url} target="_blank" rel="noopener noreferrer" className="hover:opacity-70 no-print-url">
+        {url.replace(/^https?:\/\//, "")}
+      </a>
+    ),
+    ...profiles.map((p) => (
+      <a key={p.network} href={p.url} target="_blank" rel="noopener noreferrer" className="hover:opacity-70 no-print-url">
+        {p.network}
+      </a>
+    )),
+  ].filter(Boolean);
 
-      <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-sm text-gray-600">
-        <a href={`mailto:${email}`} className="hover:text-gray-900 no-print-url">
-          {email}
-        </a>
-        {phone && <span>{phone}</span>}
-        {location && (
-          <span>
-            {location.city}, {location.countryCode}
+  return (
+    <header className="mb-6 text-center">
+      <h1
+        className="font-bold leading-tight mb-1"
+        style={{ fontFamily: "var(--font-serif)", fontSize: "2.75rem", color: ACCENT }}
+      >
+        {name}
+      </h1>
+
+      <p className="text-xs tracking-[0.25em] uppercase text-gray-500 mb-2">
+        · {label} ·
+      </p>
+
+      <div className="flex flex-wrap justify-center items-center gap-x-1 text-sm text-gray-600">
+        {contactItems.map((item, i) => (
+          <span key={i} className="flex items-center gap-x-1">
+            {i > 0 && <span className="text-gray-400 select-none">|</span>}
+            {item}
           </span>
-        )}
-        {url && (
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-gray-900 no-print-url"
-          >
-            {url.replace(/^https?:\/\//, "")}
-          </a>
-        )}
-        {profiles.map((p) => (
-          <a
-            key={p.network}
-            href={p.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-gray-900 no-print-url"
-          >
-            {p.network}
-          </a>
         ))}
       </div>
 
       {summary && (
-        <p className="mt-3 text-sm text-gray-700 leading-relaxed max-w-2xl">
+        <p className="mt-3 text-sm text-gray-600 leading-relaxed max-w-2xl mx-auto">
           {summary}
         </p>
       )}

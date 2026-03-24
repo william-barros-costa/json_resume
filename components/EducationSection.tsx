@@ -19,17 +19,16 @@ export default function EducationSection({ education }: EducationSectionProps) {
   return (
     <SectionWrapper title="Education">
       {education.map((e, i) => (
-        <div key={i} className="mb-3 last:mb-0">
-          <div className="flex items-baseline justify-between">
-            <h3 className="font-semibold text-gray-900">{e.institution}</h3>
-            <span className="text-xs text-gray-500">
-              {formatDate(e.startDate)} – {formatDate(e.endDate)}
-            </span>
+        <div key={i} className="mb-3 last:mb-0 flex items-baseline justify-between gap-4">
+          <div>
+            <span className="text-sm font-semibold text-gray-800">{e.institution}</span>
+            <p className="text-sm italic text-gray-600">
+              {e.studyType} in {e.area}
+            </p>
           </div>
-          <p className="text-sm text-gray-600">
-            {e.studyType} in {e.area}
-            {e.score && <span className="ml-2 text-gray-400">· {e.score}</span>}
-          </p>
+          <span className="text-sm text-gray-500 shrink-0">
+            {e.endDate ? formatDate(e.endDate) : "Present"}
+          </span>
         </div>
       ))}
     </SectionWrapper>

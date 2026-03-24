@@ -1,11 +1,11 @@
 {
   "basics": {
-    "name": "Jane Smith",
-    "label": "Software Engineer",
-    "email": "jane@example.com",
-    "phone": "+1 555 000 0000",
+    "name": "William Costa",
+    "label": "DevOps Engineer",
+    "email": "william.de.barros.da.costa@gmail.com",
+    "phone": "",
     "url": "https://janesmith.dev",
-    "summary": "Full-stack engineer with 8 years experience building data-intensive systems and leading small engineering teams.",
+    "summary": "DevOps engineer with 2 years experience building pipelines.",
     "location": {
       "city": "Berlin",
       "countryCode": "DE",
@@ -14,13 +14,13 @@
     "profiles": [
       {
         "network": "GitHub",
-        "username": "janesmith",
-        "url": "https://github.com/janesmith"
+        "username": "william-barros-costa",
+        "url": "https://github.com/william-barros-costa"
       },
       {
         "network": "LinkedIn",
-        "username": "janesmith",
-        "url": "https://linkedin.com/in/janesmith"
+        "username": "william-barros-costa",
+        "url": "https://linkedin.com/in/william-barros-costa"
       }
     ]
   },
@@ -147,11 +147,11 @@
   ],
   "education": [
     {
-      "institution": "Technical University of Berlin",
-      "area": "Computer Science",
-      "studyType": "Bachelor of Science",
-      "startDate": "2012-10",
-      "endDate": "2016-07",
+      "institution": "Universidade Nova de Lisboa",
+      "area": "Computer Science and Engineering",
+      "studyType": "Master",
+      "startDate": "06/2015",
+      "endDate": "12/2021",
       "score": "1.8 (German scale)"
     }
   ],
@@ -175,6 +175,8 @@
   ],
   "languages": [
     { "language": "English", "fluency": "Native" },
-    { "language": "German", "fluency": "Professional" }
+    { "language": "Portuguese", "fluency": "Native" },
+    { "language": "Spanish", "fluency": "Medium" },
+    { "language": "Danish", "fluency": "Beginner" }
   ]
 }

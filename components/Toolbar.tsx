@@ -57,7 +57,15 @@ export default function Toolbar({
   onFilterChange,
   onJobFilterChange,
 }: ToolbarProps) {
-  function toggleCategory(cat: string) {
+  function selectCategory(cat: string) {
+    if (state.techFilter.length === 1 && state.techFilter[0] === cat) {
+      onFilterChange([]);
+    } else {
+      onFilterChange([cat]);
+    }
+  }
+
+  function addCategory(cat: string) {
     if (state.techFilter.includes(cat)) {
       onFilterChange(state.techFilter.filter((c) => c !== cat));
     } else {
@@ -65,11 +73,11 @@ export default function Toolbar({
     }
   }
 
-  function toggleJobTag(tag: string) {
-    if (state.jobFilter.includes(tag)) {
-      onJobFilterChange(state.jobFilter.filter((t) => t !== tag));
+  function selectJobTag(tag: string) {
+    if (state.jobFilter.length === 1 && state.jobFilter[0] === tag) {
+      onJobFilterChange([]);
     } else {
-      onJobFilterChange([...state.jobFilter, tag]);
+      onJobFilterChange([tag]);
     }
   }
 
@@ -91,33 +99,52 @@ export default function Toolbar({
         />
 
         {allCategories.length > 0 && (
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-500 uppercase tracking-wider">Filter</span>
-            <div className="flex gap-1 flex-wrap">
-              <button
-                onClick={() => onFilterChange([])}
-                className={`px-2 py-0.5 text-xs rounded border transition-colors ${
-                  state.techFilter.length === 0
-                    ? "bg-gray-800 text-white border-gray-800"
-                    : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
-                }`}
-              >
-                all
-              </button>
-              {allCategories.map((cat) => (
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-gray-500 uppercase tracking-wider">Filter</span>
+              <div className="flex gap-1 flex-wrap">
                 <button
-                  key={cat}
-                  onClick={() => toggleCategory(cat)}
+                  onClick={() => onFilterChange([])}
                   className={`px-2 py-0.5 text-xs rounded border transition-colors ${
-                    state.techFilter.includes(cat)
+                    state.techFilter.length === 0
                       ? "bg-gray-800 text-white border-gray-800"
                       : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
                   }`}
                 >
-                  {cat}
+                  all
                 </button>
-              ))}
+                {allCategories.map((cat) => {
+                  const active = state.techFilter.includes(cat);
+                  return (
+                    <span key={cat} className={`flex rounded border overflow-hidden transition-colors ${active ? "border-gray-800" : "border-gray-200"}`}>
+                      <button
+                        onClick={() => selectCategory(cat)}
+                        title="Select only this filter"
+                        className={`px-2 py-0.5 text-xs transition-colors ${
+                          active
+                            ? "bg-gray-800 text-white"
+                            : "bg-white text-gray-600 hover:bg-gray-50"
+                        }`}
+                      >
+                        {cat}
+                      </button>
+                      <button
+                        onClick={() => addCategory(cat)}
+                        title={active ? "Remove from selection" : "Add to selection"}
+                        className={`px-1.5 py-0.5 text-xs border-l transition-colors ${
+                          active
+                            ? "bg-gray-700 text-white border-gray-600 hover:bg-gray-600"
+                            : "bg-white text-gray-400 border-gray-200 hover:bg-gray-50 hover:text-gray-700"
+                        }`}
+                      >
+                        {active ? "−" : "+"}
+                      </button>
+                    </span>
+                  );
+                })}
+              </div>
             </div>
+            <p className="text-xs text-gray-400 pl-[3.5rem]">Click to select · + to add</p>
           </div>
         )}
 
@@ -138,7 +165,7 @@ export default function Toolbar({
               {allJobTags.map((tag) => (
                 <button
                   key={tag}
-                  onClick={() => toggleJobTag(tag)}
+                  onClick={() => selectJobTag(tag)}
                   className={`px-2 py-0.5 text-xs rounded border transition-colors ${
                     state.jobFilter.includes(tag)
                       ? "bg-gray-800 text-white border-gray-800"
