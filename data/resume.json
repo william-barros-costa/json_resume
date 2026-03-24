@@ -26,12 +26,59 @@
   },
   "work": [
     {
+      "name": "Delta Systems",
+      "position": "DevOps Engineer",
+      "url": "https://deltasystems.io",
+      "startDate": "2023-01",
+      "endDate": "",
+      "tags": ["devops"],
+      "summary": "Designed and maintained CI/CD infrastructure and container orchestration platform for a microservices product running on Kubernetes.",
+      "highlights": [
+        "Migrated 12 services from manual deployments to fully automated GitLab CI/CD pipelines",
+        "Reduced deployment time from 45 minutes to under 8 minutes through pipeline parallelisation",
+        "Provisioned and maintained a 40-node Kubernetes cluster serving 3 environments",
+        "Standardised service packaging with Helm charts, cutting new service onboarding from days to hours"
+      ],
+      "technologies": [
+        {
+          "name": "GitLab",
+          "category": "devops",
+          "purpose": "CI/CD pipelines for build, test, and deploy across all services",
+          "rationale": "Self-hosted GitLab provided tight integration with the existing source repositories and allowed pipeline customisation without a separate CI vendor"
+        },
+        {
+          "name": "Kubernetes",
+          "category": "devops",
+          "purpose": "Container orchestration for all production and staging workloads",
+          "rationale": "Needed automated scaling, self-healing, and rolling updates; Kubernetes was already the company standard across all teams"
+        },
+        {
+          "name": "Docker",
+          "category": "devops",
+          "purpose": "Containerisation of all services and build environments",
+          "rationale": "Eliminated environment drift between local development and production; multi-stage builds reduced final image sizes by 60%"
+        },
+        {
+          "name": "Helm",
+          "category": "devops",
+          "purpose": "Kubernetes package manager for templating and versioning deployment manifests",
+          "rationale": "Helm charts allowed per-environment value overrides without duplicating manifests; chart versioning enabled reliable rollbacks"
+        },
+        {
+          "name": "Ansible",
+          "category": "devops",
+          "purpose": "Configuration management and provisioning of cluster nodes and base infrastructure",
+          "rationale": "Idempotent playbooks made node reprovisioning safe and repeatable; no agent required simplified the security model"
+        }
+      ]
+    },
+    {
       "name": "Acme Corp",
       "position": "Senior Backend Engineer",
       "url": "https://acme.com",
       "startDate": "2021-03",
-      "endDate": "",
-      "tags": ["backend", "developer"],
+      "endDate": "2022-12",
+      "tags": ["software-engineer"],
       "summary": "Led backend platform work for a data-intensive SaaS product serving 50k daily active users.",
       "highlights": [
         "Built event-driven pipeline handling 10k msg/s with 99.95% uptime",
@@ -77,7 +124,7 @@
       "url": "https://betainc.io",
       "startDate": "2018-06",
       "endDate": "2021-02",
-      "tags": ["developer", "fullstack"],
+      "tags": ["software-engineer"],
       "summary": "Built and maintained a customer-facing React dashboard and the Node.js backend that powered it.",
       "highlights": [
         "Delivered dashboard redesign that increased user retention by 18%",
@@ -117,7 +164,7 @@
       "url": "https://gammastudio.dev",
       "startDate": "2016-09",
       "endDate": "2018-05",
-      "tags": ["developer", "frontend"],
+      "tags": ["software-engineer"],
       "summary": "Developed features for a content management platform used by media companies.",
       "highlights": [
         "Built a drag-and-drop page builder component used by 200+ clients",

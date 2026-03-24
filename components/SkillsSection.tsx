@@ -6,22 +6,36 @@ interface SkillsSectionProps {
   languages: Language[];
 }
 
+function Chip({ label }: { label: string }) {
+  return (
+    <span className="inline-block px-2 py-0.5 text-xs text-gray-600 border border-gray-300 rounded bg-gray-50">
+      {label}
+    </span>
+  );
+}
+
 export default function SkillsSection({ skills, languages }: SkillsSectionProps) {
   return (
     <SectionWrapper title="Skills">
       <div className="space-y-2">
         {skills.map((skill) => (
-          <div key={skill.name} className="flex gap-3 text-sm">
-            <span className="text-gray-700 w-32 shrink-0">{skill.name}</span>
-            <span className="text-gray-500">{skill.keywords.join(" | ")}</span>
+          <div key={skill.name} className="flex items-start gap-3">
+            <span className="text-sm text-gray-600 w-28 shrink-0 pt-0.5">{skill.name}</span>
+            <div className="flex flex-wrap gap-1.5">
+              {skill.keywords.map((kw) => (
+                <Chip key={kw} label={kw} />
+              ))}
+            </div>
           </div>
         ))}
         {languages.length > 0 && (
-          <div className="flex gap-3 text-sm">
-            <span className="text-gray-700 w-32 shrink-0">Languages</span>
-            <span className="text-gray-500">
-              {languages.map((l) => `${l.language} (${l.fluency})`).join(" | ")}
-            </span>
+          <div className="flex items-start gap-3">
+            <span className="text-sm text-gray-600 w-28 shrink-0 pt-0.5">Languages</span>
+            <div className="flex flex-wrap gap-1.5">
+              {languages.map((l) => (
+                <Chip key={l.language} label={`${l.language} (${l.fluency})`} />
+              ))}
+            </div>
           </div>
         )}
       </div>

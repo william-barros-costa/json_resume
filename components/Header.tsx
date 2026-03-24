@@ -7,19 +7,13 @@ interface HeaderProps {
 }
 
 export default function Header({ basics }: HeaderProps) {
-  const { name, label, email, phone, url, location, profiles, summary } = basics;
+  const { name, label, email, url, profiles, summary } = basics;
 
   const contactItems = [
     email && (
       <a key="email" href={`mailto:${email}`} className="hover:opacity-70 no-print-url">
         {email}
       </a>
-    ),
-    phone && <span key="phone">{phone}</span>,
-    location && (
-      <span key="location">
-        {location.city}, {location.countryCode}
-      </span>
     ),
     url && (
       <a key="url" href={url} target="_blank" rel="noopener noreferrer" className="hover:opacity-70 no-print-url">
