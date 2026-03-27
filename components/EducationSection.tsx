@@ -21,12 +21,12 @@ export default function EducationSection({ education }: EducationSectionProps) {
       {education.map((e, i) => (
         <div key={i} className="mb-3 last:mb-0 flex items-baseline justify-between gap-4">
           <div>
-            <span className="text-sm font-semibold text-gray-800">{e.institution}</span>
-            <p className="text-sm italic text-gray-600">
+            <span className="text-sm font-semibold text-gray-800 dark:text-gray-100">{e.institution}</span>
+            <p className="text-sm italic text-gray-600 dark:text-gray-300">
               {e.studyType} in {e.area}
             </p>
           </div>
-          <span className="text-sm text-gray-500 shrink-0">
+          <span className="text-sm text-gray-500 dark:text-gray-400 shrink-0">
             {e.endDate ? formatDate(e.endDate) : "Present"}
           </span>
         </div>

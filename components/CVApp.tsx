@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import type { Resume, CVState, DetailLevel, TechLevel, EntryOverride } from "@/lib/types";
 import type { Preset } from "@/lib/presets";
 import { DEFAULT_PRESET, PRESETS } from "@/lib/presets";
@@ -30,6 +30,19 @@ interface CVAppProps {
 
 export default function CVApp({ resume, preset }: CVAppProps) {
   const [state, setState] = useState<CVState>(() => initialState(preset));
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }, [theme]);
+
+  useEffect(() => {
+    const before = () => document.documentElement.classList.remove("dark");
+    const after = () => { if (theme === "dark") document.documentElement.classList.add("dark"); };
+    window.addEventListener("beforeprint", before);
+    window.addEventListener("afterprint", after);
+    return () => { window.removeEventListener("beforeprint", before); window.removeEventListener("afterprint", after); };
+  }, [theme]);
 
   const allCategories = useMemo(() => {
     const cats = new Set<string>();
@@ -75,18 +88,22 @@ export default function CVApp({ resume, preset }: CVAppProps) {
   }
 
   return (
-    <>
-      <Toolbar
-        state={state}
-        allCategories={allCategories}
-        allJobTags={allJobTags}
-        onDetailChange={setDetailLevel}
-        onTechChange={setTechLevel}
-        onFilterChange={setTechFilter}
-        onJobFilterChange={setJobFilter}
-      />
+    <div className="flex">
+      <aside className="print:hidden sticky top-0 h-screen w-52 shrink-0 overflow-y-auto border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+        <Toolbar
+          state={state}
+          allCategories={allCategories}
+          allJobTags={allJobTags}
+          onDetailChange={setDetailLevel}
+          onTechChange={setTechLevel}
+          onFilterChange={setTechFilter}
+          onJobFilterChange={setJobFilter}
+          theme={theme}
+          onThemeToggle={() => setTheme((t) => (t === "light" ? "dark" : "light"))}
+        />
+      </aside>
 
-      <main className="max-w-3xl mx-auto px-6 py-8">
+      <main className="flex-1 flex justify-center px-6 py-8"><div className="w-full max-w-3xl">
         <Header basics={resume.basics} />
 
         <SectionWrapper title="Experience">
@@ -112,7 +129,7 @@ export default function CVApp({ resume, preset }: CVAppProps) {
 
         <SkillsSection skills={resume.skills} languages={resume.languages} />
         <EducationSection education={resume.education} />
-      </main>
-    </>
+      </div></main>
+    </div>
   );
 }

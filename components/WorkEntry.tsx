@@ -59,55 +59,62 @@ export default function WorkEntryComponent({
     override?.detailLevel !== undefined || override?.techLevel !== undefined;
 
   return (
-    <div className="work-entry mb-5 pb-5 border-b border-gray-100 last:border-0 last:pb-0">
+    <div className="work-entry group relative mb-5 pb-5 border-b border-gray-100 dark:border-gray-700 last:border-0 last:pb-0">
 
-      {/* Per-entry controls (hidden on print) */}
-      <div className="flex items-center justify-end gap-1 print:hidden mb-1">
-        {hasOverride && (
-          <button
-            onClick={resetOverride}
-            className="text-xs text-gray-400 hover:text-gray-600 px-1"
-            title="Reset to global settings"
-          >
-            ↺
-          </button>
-        )}
-        <span className="text-xs text-gray-400">detail:</span>
-        <button
-          onClick={() => cycleDetail(-1)}
-          disabled={DETAIL_LEVELS.indexOf(detailLevel) === 0}
-          className="text-xs text-gray-500 hover:text-gray-800 disabled:opacity-30 px-0.5"
-          title="Less detail"
-        >
-          −
-        </button>
-        <span className="text-xs font-mono text-gray-500 w-14 text-center">{detailLevel}</span>
-        <button
-          onClick={() => cycleDetail(1)}
-          disabled={DETAIL_LEVELS.indexOf(detailLevel) === DETAIL_LEVELS.length - 1}
-          className="text-xs text-gray-500 hover:text-gray-800 disabled:opacity-30 px-0.5"
-          title="More detail"
-        >
-          +
-        </button>
-        <span className="text-xs text-gray-400 ml-2">tech:</span>
-        <button
-          onClick={() => cycleTech(-1)}
-          disabled={TECH_LEVELS.indexOf(techLevel) === 0}
-          className="text-xs text-gray-500 hover:text-gray-800 disabled:opacity-30 px-0.5"
-          title="Less tech detail"
-        >
-          −
-        </button>
-        <span className="text-xs font-mono text-gray-500 w-16 text-center">{techLevel}</span>
-        <button
-          onClick={() => cycleTech(1)}
-          disabled={TECH_LEVELS.indexOf(techLevel) === TECH_LEVELS.length - 1}
-          className="text-xs text-gray-500 hover:text-gray-800 disabled:opacity-30 px-0.5"
-          title="More tech detail"
-        >
-          +
-        </button>
+      {/* Per-entry controls — floated left, visible on hover */}
+      <div className="print:hidden absolute right-full top-0 pr-3 flex flex-col gap-1 pt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none group-hover:pointer-events-auto">
+        <div className={`rounded border px-3 py-2 flex flex-col gap-2.5 ${
+          hasOverride
+            ? "border-gray-400 dark:border-gray-500 bg-gray-100 dark:bg-gray-700"
+            : "border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800"
+        }`}>
+          {/* Detail control */}
+          <div className="flex flex-col items-center gap-0.5">
+            <span className="text-[9px] uppercase tracking-wider text-gray-400 dark:text-gray-500">detail</span>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => cycleDetail(-1)}
+                disabled={DETAIL_LEVELS.indexOf(detailLevel) === 0}
+                className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 disabled:opacity-25 leading-none px-0.5"
+                title="Less detail"
+              >−</button>
+              <span className="text-[10px] font-mono text-gray-700 dark:text-gray-200 w-16 text-center">{detailLevel}</span>
+              <button
+                onClick={() => cycleDetail(1)}
+                disabled={DETAIL_LEVELS.indexOf(detailLevel) === DETAIL_LEVELS.length - 1}
+                className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 disabled:opacity-25 leading-none px-0.5"
+                title="More detail"
+              >+</button>
+            </div>
+          </div>
+          {/* Tech control */}
+          <div className="flex flex-col items-center gap-0.5">
+            <span className="text-[9px] uppercase tracking-wider text-gray-400 dark:text-gray-500">tech</span>
+            <div className="flex items-center gap-0.5">
+              <button
+                onClick={() => cycleTech(-1)}
+                disabled={TECH_LEVELS.indexOf(techLevel) === 0}
+                className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 disabled:opacity-25 leading-none px-0.5"
+                title="Less tech detail"
+              >−</button>
+              <span className="text-[10px] font-mono text-gray-700 dark:text-gray-200 w-11 text-center">{techLevel}</span>
+              <button
+                onClick={() => cycleTech(1)}
+                disabled={TECH_LEVELS.indexOf(techLevel) === TECH_LEVELS.length - 1}
+                className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 disabled:opacity-25 leading-none px-0.5"
+                title="More tech detail"
+              >+</button>
+            </div>
+          </div>
+          {/* Reset */}
+          {hasOverride && (
+            <button
+              onClick={resetOverride}
+              className="text-[9px] text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-100 text-center"
+              title="Reset to global settings"
+            >↺ reset</button>
+          )}
+        </div>
       </div>
 
       {/* Company + position + date */}
@@ -122,23 +129,23 @@ export default function WorkEntryComponent({
               entry.name
             )}
           </span>
-          <span className="text-gray-700">, {entry.position}</span>
+          <span className="text-gray-700 dark:text-gray-300">, {entry.position}</span>
         </p>
-        <span className="text-sm text-gray-500 shrink-0">
+        <span className="text-sm text-gray-500 dark:text-gray-400 shrink-0">
           {formatDate(entry.startDate)} - {formatDate(entry.endDate)}
         </span>
       </div>
 
       {/* Summary (italic) */}
       {(detailLevel === "standard" || detailLevel === "full") && entry.summary && (
-        <p className="mt-0.5 text-sm italic text-gray-700 leading-snug">{entry.summary}</p>
+        <p className="mt-0.5 text-sm italic text-gray-700 dark:text-gray-300 leading-snug">{entry.summary}</p>
       )}
 
       {/* Highlights */}
       {detailLevel === "full" && entry.highlights.length > 0 && (
         <ul className="mt-2 space-y-1 list-disc list-outside pl-4">
           {entry.highlights.map((h, i) => (
-            <li key={i} className="text-sm text-gray-700 leading-snug">
+            <li key={i} className="text-sm text-gray-700 dark:text-gray-300 leading-snug">
               {h}
             </li>
           ))}

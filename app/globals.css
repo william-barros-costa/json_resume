@@ -1,9 +1,16 @@
 @import "tailwindcss";
 
+@variant dark (&:is(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #1a1a1a;
   --accent: #8B1C1C;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f1f5f9;
 }
 
 @theme inline {

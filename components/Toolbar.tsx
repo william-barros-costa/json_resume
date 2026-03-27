@@ -13,6 +13,8 @@ interface ToolbarProps {
   onTechChange: (level: TechLevel) => void;
   onFilterChange: (filter: string[]) => void;
   onJobFilterChange: (filter: string[]) => void;
+  theme: "light" | "dark";
+  onThemeToggle: () => void;
 }
 
 function SegmentedControl<T extends string>({
@@ -27,17 +29,17 @@ function SegmentedControl<T extends string>({
   onChange: (v: T) => void;
 }) {
   return (
-    <div className="flex items-center gap-2">
-      <span className="text-xs text-gray-500 uppercase tracking-wider">{label}</span>
-      <div className="flex rounded border border-gray-200 overflow-hidden">
+    <div className="flex flex-col gap-1">
+      <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">{label}</span>
+      <div className="flex flex-col rounded border border-gray-200 dark:border-gray-600 overflow-hidden">
         {options.map((opt) => (
           <button
             key={opt}
             onClick={() => onChange(opt)}
-            className={`px-2.5 py-1 text-xs transition-colors ${
+            className={`px-2.5 py-1.5 text-xs text-left transition-colors ${
               value === opt
-                ? "bg-gray-800 text-white"
-                : "bg-white text-gray-600 hover:bg-gray-50"
+                ? "bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-900"
+                : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
             }`}
           >
             {opt}
@@ -56,6 +58,8 @@ export default function Toolbar({
   onTechChange,
   onFilterChange,
   onJobFilterChange,
+  theme,
+  onThemeToggle,
 }: ToolbarProps) {
   function selectCategory(cat: string) {
     if (state.techFilter.length === 1 && state.techFilter[0] === cat) {
@@ -82,8 +86,8 @@ export default function Toolbar({
   }
 
   return (
-    <div className="toolbar sticky top-0 z-10 bg-white border-b border-gray-200 px-4 py-2 print:hidden">
-      <div className="max-w-3xl mx-auto flex flex-wrap items-center gap-4">
+    <div className="flex flex-col gap-5 p-4">
+      <div className="flex flex-col gap-5">
         <SegmentedControl
           label="Detail"
           options={DETAIL_LEVELS}
@@ -100,15 +104,15 @@ export default function Toolbar({
 
         {allCategories.length > 0 && (
           <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-gray-500 uppercase tracking-wider">Filter</span>
+            <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Filter</span>
+            <div className="flex flex-col gap-1">
               <div className="flex gap-1 flex-wrap">
                 <button
                   onClick={() => onFilterChange([])}
                   className={`px-2 py-0.5 text-xs rounded border transition-colors ${
                     state.techFilter.length === 0
-                      ? "bg-gray-800 text-white border-gray-800"
-                      : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
+                      ? "bg-gray-800 text-white border-gray-800 dark:bg-gray-200 dark:text-gray-900 dark:border-gray-200"
+                      : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
                   }`}
                 >
                   all
@@ -116,14 +120,14 @@ export default function Toolbar({
                 {allCategories.map((cat) => {
                   const active = state.techFilter.includes(cat);
                   return (
-                    <span key={cat} className={`flex rounded border overflow-hidden transition-colors ${active ? "border-gray-800" : "border-gray-200"}`}>
+                    <span key={cat} className={`flex rounded border overflow-hidden transition-colors ${active ? "border-gray-800 dark:border-gray-300" : "border-gray-200 dark:border-gray-600"}`}>
                       <button
                         onClick={() => selectCategory(cat)}
                         title="Select only this filter"
                         className={`px-2 py-0.5 text-xs transition-colors ${
                           active
-                            ? "bg-gray-800 text-white"
-                            : "bg-white text-gray-600 hover:bg-gray-50"
+                            ? "bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-900"
+                            : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                         }`}
                       >
                         {cat}
@@ -133,8 +137,8 @@ export default function Toolbar({
                         title={active ? "Remove from selection" : "Add to selection"}
                         className={`px-1.5 py-0.5 text-xs border-l transition-colors ${
                           active
-                            ? "bg-gray-700 text-white border-gray-600 hover:bg-gray-600"
-                            : "bg-white text-gray-400 border-gray-200 hover:bg-gray-50 hover:text-gray-700"
+                            ? "bg-gray-700 dark:bg-gray-300 text-white dark:text-gray-900 border-gray-600 dark:border-gray-400 hover:bg-gray-600 dark:hover:bg-gray-400"
+                            : "bg-white dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-200"
                         }`}
                       >
                         {active ? "−" : "+"}
@@ -144,20 +148,20 @@ export default function Toolbar({
                 })}
               </div>
             </div>
-            <p className="text-xs text-gray-400 pl-[3.5rem]">Click to select · + to add</p>
+            <p className="text-xs text-gray-400 dark:text-gray-500">Click to select · + to add</p>
           </div>
         )}
 
         {allJobTags.length > 0 && (
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-500 uppercase tracking-wider">Roles</span>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Roles</span>
             <div className="flex gap-1 flex-wrap">
               <button
                 onClick={() => onJobFilterChange([])}
                 className={`px-2 py-0.5 text-xs rounded border transition-colors ${
                   state.jobFilter.length === 0
-                    ? "bg-gray-800 text-white border-gray-800"
-                    : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
+                    ? "bg-gray-800 text-white border-gray-800 dark:bg-gray-200 dark:text-gray-900 dark:border-gray-200"
+                    : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
                 }`}
               >
                 all
@@ -168,8 +172,8 @@ export default function Toolbar({
                   onClick={() => selectJobTag(tag)}
                   className={`px-2 py-0.5 text-xs rounded border transition-colors ${
                     state.jobFilter.includes(tag)
-                      ? "bg-gray-800 text-white border-gray-800"
-                      : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
+                      ? "bg-gray-800 text-white border-gray-800 dark:bg-gray-200 dark:text-gray-900 dark:border-gray-200"
+                      : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
                   }`}
                 >
                   {tag}
@@ -180,8 +184,15 @@ export default function Toolbar({
         )}
 
         <button
+          onClick={onThemeToggle}
+          className="w-full px-3 py-1.5 text-xs border border-gray-200 dark:border-gray-600 rounded text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+        >
+          {theme === "light" ? "☾ Dark" : "☀ Light"}
+        </button>
+
+        <button
           onClick={() => window.print()}
-          className="ml-auto px-3 py-1 text-xs bg-gray-800 text-white rounded hover:bg-gray-700 transition-colors"
+          className="w-full px-3 py-1.5 text-xs bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-900 rounded hover:bg-gray-700 dark:hover:bg-gray-300 transition-colors"
         >
           Print / Save PDF
         </button>
