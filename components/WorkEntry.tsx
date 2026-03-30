@@ -57,6 +57,24 @@ export default function WorkEntryComponent({
 
   const hasOverride =
     override?.detailLevel !== undefined || override?.techLevel !== undefined;
+  const isHidden = override?.hidden === true;
+
+  function toggleHidden() {
+    onOverride(index, { ...override, hidden: !isHidden });
+  }
+
+  if (isHidden) {
+    return (
+      <div className="print:hidden group relative mb-2 pb-2 border-b border-gray-100 dark:border-gray-700 last:border-0">
+        <div className="print:hidden absolute right-full top-0 pr-3 pt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none group-hover:pointer-events-auto">
+          <div className="rounded border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-3 py-2">
+            <button onClick={toggleHidden} className="text-[9px] text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-100">↩ restore</button>
+          </div>
+        </div>
+        <span className="text-sm line-through text-gray-400 dark:text-gray-600 opacity-40">{entry.name}, {entry.position}</span>
+      </div>
+    );
+  }
 
   return (
     <div className="work-entry group relative mb-5 pb-5 border-b border-gray-100 dark:border-gray-700 last:border-0 last:pb-0">
@@ -68,6 +86,11 @@ export default function WorkEntryComponent({
             ? "border-gray-400 dark:border-gray-500 bg-gray-100 dark:bg-gray-700"
             : "border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800"
         }`}>
+          {/* Remove */}
+          <button
+            onClick={toggleHidden}
+            className="text-[9px] text-red-400 hover:text-red-600 dark:hover:text-red-300 text-center"
+          >✕ remove</button>
           {/* Detail control */}
           <div className="flex flex-col items-center gap-0.5">
             <span className="text-[9px] uppercase tracking-wider text-gray-400 dark:text-gray-500">detail</span>

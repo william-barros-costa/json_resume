@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import type { Resume, CVState, DetailLevel, TechLevel, EntryOverride } from "@/lib/types";
+import type { Resume, CVState, DetailLevel, TechLevel, EntryOverride, SectionKey } from "@/lib/types";
+import { DEFAULT_SECTION_ORDER } from "@/lib/types";
 import type { Preset } from "@/lib/presets";
 import { DEFAULT_PRESET, PRESETS } from "@/lib/presets";
 import Toolbar from "./Toolbar";
@@ -10,6 +11,7 @@ import SectionWrapper from "./SectionWrapper";
 import WorkEntryComponent from "./WorkEntry";
 import EducationSection from "./EducationSection";
 import SkillsSection from "./SkillsSection";
+import CertificationsSection from "./CertificationsSection";
 
 function initialState(presetName: string | null): CVState {
   const key = presetName && PRESETS[presetName] ? presetName : DEFAULT_PRESET;
@@ -20,6 +22,12 @@ function initialState(presetName: string | null): CVState {
     techFilter: preset.techFilter,
     jobFilter: [],
     entryOverrides: {},
+    sectionOrder: DEFAULT_SECTION_ORDER,
+    hiddenSections: [],
+    hiddenCertifications: [],
+    hiddenEducation: [],
+    hiddenSkillCategories: [],
+    hiddenSkillKeywords: {},
   };
 }
 
@@ -87,6 +95,56 @@ export default function CVApp({ resume, preset }: CVAppProps) {
     }));
   }
 
+  function setSectionOrder(order: SectionKey[]) {
+    setState((s) => ({ ...s, sectionOrder: order }));
+  }
+
+  function toggleCertification(i: number) {
+    setState((s) => ({
+      ...s,
+      hiddenCertifications: s.hiddenCertifications.includes(i)
+        ? s.hiddenCertifications.filter((x) => x !== i)
+        : [...s.hiddenCertifications, i],
+    }));
+  }
+
+  function toggleEducation(i: number) {
+    setState((s) => ({
+      ...s,
+      hiddenEducation: s.hiddenEducation.includes(i)
+        ? s.hiddenEducation.filter((x) => x !== i)
+        : [...s.hiddenEducation, i],
+    }));
+  }
+
+  function toggleSkillCategory(name: string) {
+    setState((s) => ({
+      ...s,
+      hiddenSkillCategories: s.hiddenSkillCategories.includes(name)
+        ? s.hiddenSkillCategories.filter((x) => x !== name)
+        : [...s.hiddenSkillCategories, name],
+    }));
+  }
+
+  function toggleSkillKeyword(category: string, keyword: string) {
+    setState((s) => {
+      const current = s.hiddenSkillKeywords[category] ?? [];
+      const next = current.includes(keyword)
+        ? current.filter((k) => k !== keyword)
+        : [...current, keyword];
+      return { ...s, hiddenSkillKeywords: { ...s.hiddenSkillKeywords, [category]: next } };
+    });
+  }
+
+  function toggleSection(key: SectionKey) {
+    setState((s) => ({
+      ...s,
+      hiddenSections: s.hiddenSections.includes(key)
+        ? s.hiddenSections.filter((k) => k !== key)
+        : [...s.hiddenSections, key],
+    }));
+  }
+
   return (
     <div className="flex">
       <aside className="print:hidden sticky top-0 h-screen w-52 shrink-0 overflow-y-auto border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
@@ -98,6 +156,7 @@ export default function CVApp({ resume, preset }: CVAppProps) {
           onTechChange={setTechLevel}
           onFilterChange={setTechFilter}
           onJobFilterChange={setJobFilter}
+          onSectionReorder={setSectionOrder}
           theme={theme}
           onThemeToggle={() => setTheme((t) => (t === "light" ? "dark" : "light"))}
         />
@@ -106,29 +165,35 @@ export default function CVApp({ resume, preset }: CVAppProps) {
       <main className="flex-1 flex justify-center px-6 py-8"><div className="w-full max-w-3xl">
         <Header basics={resume.basics} />
 
-        <SectionWrapper title="Experience">
-          {resume.work
-            .filter((entry) => {
-              if (state.jobFilter.length === 0) return true;
-              if (!entry.tags || entry.tags.length === 0) return true;
-              return entry.tags.some((tag) => state.jobFilter.includes(tag));
-            })
-            .map((entry, i) => (
-              <WorkEntryComponent
-                key={i}
-                entry={entry}
-                index={i}
-                globalDetailLevel={state.detailLevel}
-                globalTechLevel={state.techLevel}
-                techFilter={state.techFilter}
-                override={state.entryOverrides[i] ?? null}
-                onOverride={setEntryOverride}
-              />
-            ))}
-        </SectionWrapper>
-
-        <SkillsSection skills={resume.skills} languages={resume.languages} />
-        <EducationSection education={resume.education} />
+        {state.sectionOrder.map((section) => {
+          const hidden = state.hiddenSections.includes(section);
+          if (section === "skills") return <SkillsSection key="skills" skills={resume.skills} languages={resume.languages} techFilter={state.techFilter} jobFilter={state.jobFilter} collapsed={hidden} onToggle={() => toggleSection("skills")} hiddenCategories={state.hiddenSkillCategories} hiddenKeywords={state.hiddenSkillKeywords} onToggleCategory={toggleSkillCategory} onToggleKeyword={toggleSkillKeyword} />;
+          if (section === "certifications") return resume.certifications ? <CertificationsSection key="certifications" certifications={resume.certifications} techFilter={state.techFilter} jobFilter={state.jobFilter} hiddenIndices={state.hiddenCertifications} onToggle={toggleCertification} collapsed={hidden} onToggleSection={() => toggleSection("certifications")} /> : null;
+          if (section === "experience") return (
+            <SectionWrapper key="experience" title="Experience" collapsed={hidden} onToggle={() => toggleSection("experience")}>
+              {resume.work
+                .filter((entry) => {
+                  if (state.jobFilter.length === 0) return true;
+                  if (!entry.tags || entry.tags.length === 0) return true;
+                  return entry.tags.some((tag) => state.jobFilter.includes(tag));
+                })
+                .map((entry, i) => (
+                  <WorkEntryComponent
+                    key={i}
+                    entry={entry}
+                    index={i}
+                    globalDetailLevel={state.detailLevel}
+                    globalTechLevel={state.techLevel}
+                    techFilter={state.techFilter}
+                    override={state.entryOverrides[i] ?? null}
+                    onOverride={setEntryOverride}
+                  />
+                ))}
+            </SectionWrapper>
+          );
+          if (section === "education") return <EducationSection key="education" education={resume.education} collapsed={hidden} onToggle={() => toggleSection("education")} hiddenIndices={state.hiddenEducation} onToggleEntry={toggleEducation} />;
+          return null;
+        })}
       </div></main>
     </div>
   );

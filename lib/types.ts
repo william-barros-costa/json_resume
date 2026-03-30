@@ -53,11 +53,22 @@ export interface Basics {
 export interface Skill {
   name: string;
   keywords: string[];
+  categories?: string[];
+  tags?: string[];
 }
 
 export interface Language {
   language: string;
   fluency: string;
+}
+
+export interface Certification {
+  name: string;
+  issuer: string;
+  date: string;
+  url?: string;
+  categories?: string[];
+  tags?: string[];
 }
 
 export interface Resume {
@@ -66,12 +77,18 @@ export interface Resume {
   education: Education[];
   skills: Skill[];
   languages: Language[];
+  certifications?: Certification[];
 }
 
 export interface EntryOverride {
   detailLevel?: DetailLevel;
   techLevel?: TechLevel;
+  hidden?: boolean;
 }
+
+export type SectionKey = "skills" | "certifications" | "experience" | "education";
+
+export const DEFAULT_SECTION_ORDER: SectionKey[] = ["skills", "certifications", "experience", "education"];
 
 export interface CVState {
   detailLevel: DetailLevel;
@@ -79,4 +96,10 @@ export interface CVState {
   techFilter: string[];
   jobFilter: string[];
   entryOverrides: Record<number, EntryOverride | null>;
+  sectionOrder: SectionKey[];
+  hiddenSections: SectionKey[];
+  hiddenCertifications: number[];
+  hiddenEducation: number[];
+  hiddenSkillCategories: string[];
+  hiddenSkillKeywords: Record<string, string[]>;
 }
