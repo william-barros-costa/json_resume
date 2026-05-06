@@ -7,9 +7,9 @@
     "url": "https://janesmith.dev",
     "summary": "DevOps engineer with 2 years experience building pipelines.",
     "location": {
-      "city": "Berlin",
-      "countryCode": "DE",
-      "region": "Berlin"
+      "city": "Lisbon",
+      "countryCode": "PT",
+      "region": "Lisbon"
     },
     "profiles": [
       {
@@ -26,18 +26,17 @@
   },
   "work": [
     {
-      "name": "Delta Systems",
+      "name": "Polarising",
       "position": "DevOps Engineer",
-      "url": "https://deltasystems.io",
-      "startDate": "2023-01",
+      "url": "https://polarising.com",
+      "startDate": "2026-01",
       "endDate": "",
-      "tags": ["devops"],
-      "summary": "Designed and maintained CI/CD infrastructure and container orchestration platform for a microservices product running on Kubernetes.",
+      "tags": ["devops", "infrastructure"],
+      "summary": "Consolidated multiple tenant-specific repositories into a single monorepo via a smart pipeline that autonomously handles tenant selection and configuration.",
       "highlights": [
-        "Migrated 12 services from manual deployments to fully automated GitLab CI/CD pipelines",
-        "Reduced deployment time from 45 minutes to under 8 minutes through pipeline parallelisation",
-        "Provisioned and maintained a 40-node Kubernetes cluster serving 3 environments",
-        "Standardised service packaging with Helm charts, cutting new service onboarding from days to hours"
+        "Leading the consolidation of multiple tenant-specific repositories into a monorepo, delivering a CI/CD pipeline that automates deployments across configurable sets of Business Units",
+        "Designing and implementing a multi-stage pipeline that includes AWS authentication, code quality and security scanning (application, repository, and Helm charts), parallel builds with library caching, Docker image and Helm chart packaging and publishing, cluster deployment, and post-deployment performance testing",
+        "Providing AWS support for a variety of operational difficulties, including as deployment failures, misconfigurations, log analysis, and environment variable management."
       ],
       "technologies": [
         {
@@ -65,25 +64,30 @@
           "rationale": "Helm charts allowed per-environment value overrides without duplicating manifests; chart versioning enabled reliable rollbacks"
         },
         {
-          "name": "Ansible",
-          "category": "devops",
-          "purpose": "Configuration management and provisioning of cluster nodes and base infrastructure",
-          "rationale": "Idempotent playbooks made node reprovisioning safe and repeatable; no agent required simplified the security model"
+          "name": "AWS",
+          "category": "infrastructure",
+          "purpose": "Mantaining Configurations and debugging ocurring issues",
+          "rationale": "Helm charts allowed per-environment value overrides without duplicating manifests; chart versioning enabled reliable rollbacks"
+        },
+        {
+          "name": "Terraform",
+          "category": "infrastructure",
+          "purpose": "Kubernetes package manager for templating and versioning deployment manifests",
+          "rationale": "Help improve current infrastructure and alter/add needed configurations"
         }
       ]
     },
     {
-      "name": "Acme Corp",
-      "position": "Senior Backend Engineer",
-      "url": "https://acme.com",
-      "startDate": "2021-03",
-      "endDate": "2022-12",
-      "tags": ["software-engineer"],
-      "summary": "Led backend platform work for a data-intensive SaaS product serving 50k daily active users.",
+      "name": "Polarising",
+      "position": "DevOps Engineer",
+      "url": "https://polarising.com",
+      "startDate": "2025-4",
+      "endDate": "2025-12",
+      "tags": ["devops"],
+      "summary": "Creating a CI/CD pipeline in Gitlab to be used by over 60 maven projects",
       "highlights": [
-        "Built event-driven pipeline handling 10k msg/s with 99.95% uptime",
-        "Reduced p99 latency by 40% through query optimisation and caching",
-        "Mentored 3 junior engineers and led bi-weekly architecture reviews"
+        "Developed and maintained a centralized GitLab CI/CD pipeline that supports 60+ Maven-based projects, including main, release, hotfix, bugfix, and feature branches. We introduced a configurable YAML templating framework to streamline shared logic across branches, reducing duplication, and making updates easier and safer. SonarQube and automated testing have been integrated directly into the development workflow to ensure code quality and security. Created a sophisticated orchestration file that modifies pipeline behavior based on the current branch and user-defined inputs, while also providing controls through variables for skipping maven tests, skipping maven javadoc creation, and setting Maven flags",
+        "Managed Kubernetes manifests and set up automated, GitOps-style deployments across all 60+ projects with ArgoCD"
       ],
       "technologies": [
         {
@@ -119,39 +123,62 @@
       ]
     },
     {
-      "name": "Beta Inc",
-      "position": "Full-Stack Engineer",
-      "url": "https://betainc.io",
-      "startDate": "2018-06",
-      "endDate": "2021-02",
+      "name": "OpenCascade, part of Capgemini",
+      "position": "DevOps Engineer",
+      "url": "https://www.opencascade.com/",
+      "startDate": "2023-10",
+      "endDate": "2025-03",
       "tags": ["software-engineer"],
-      "summary": "Built and maintained a customer-facing React dashboard and the Node.js backend that powered it.",
+      "summary": "Revamping a legacy app’s infrastructure from Airflow to a proprietary system with Zookeeper and Kafka",
       "highlights": [
-        "Delivered dashboard redesign that increased user retention by 18%",
-        "Migrated monolith to service-oriented architecture over 6 months with zero downtime",
-        "Introduced automated testing, raising coverage from 12% to 74%"
+        "Responsible for the migration of the infrastructure of a legacy application (written in Python, Java, Kotlin, C++, and Go) to a proprietary solution using Zookeeper and Kafka, reducing resource consumption by 10%. The responsibilities include: designing the new logic flow that includes the proprietary solution, creating Docker containers, Kubernetes Charts, configuring ArgoCD, and developing Gitlab pipelines.",
+        "Developing a solution that installed all required tools on developers, through Ansible"
       ],
       "technologies": [
         {
-          "name": "React",
+          "name": "Gitlab",
           "category": "frontend",
           "purpose": "Primary UI framework for the customer dashboard",
           "rationale": "Component model matched the design system structure; large ecosystem of chart and table libraries reduced build time"
         },
         {
-          "name": "TypeScript",
+          "name": "Python",
           "category": "frontend",
           "purpose": "Static typing across frontend and shared API contracts",
           "rationale": "Caught a class of runtime errors at compile time; shared types between frontend and backend eliminated contract drift"
         },
         {
-          "name": "Node.js",
+          "name": "Go",
           "category": "backend",
           "purpose": "REST API and WebSocket server for the dashboard backend",
           "rationale": "Shared language with the frontend team reduced context switching; non-blocking I/O handled concurrent WebSocket connections efficiently"
         },
         {
-          "name": "PostgreSQL",
+          "name": "ArgoCD",
+          "category": "database",
+          "purpose": "Relational store for customer data, events, and billing records",
+          "rationale": "Consistent choice with company standards; JSONB columns provided flexibility for semi-structured event payloads without a separate document store"
+        },
+        {
+          "name": "Gitlab",
+          "category": "backend",
+          "purpose": "REST API and WebSocket server for the dashboard backend",
+          "rationale": "Shared language with the frontend team reduced context switching; non-blocking I/O handled concurrent WebSocket connections efficiently"
+        },
+        {
+          "name": "Kubernetes",
+          "category": "database",
+          "purpose": "Relational store for customer data, events, and billing records",
+          "rationale": "Consistent choice with company standards; JSONB columns provided flexibility for semi-structured event payloads without a separate document store"
+        },
+        {
+          "name": "Docker",
+          "category": "backend",
+          "purpose": "REST API and WebSocket server for the dashboard backend",
+          "rationale": "Shared language with the frontend team reduced context switching; non-blocking I/O handled concurrent WebSocket connections efficiently"
+        },
+        {
+          "name": "Ansible",
           "category": "database",
           "purpose": "Relational store for customer data, events, and billing records",
           "rationale": "Consistent choice with company standards; JSONB columns provided flexibility for semi-structured event payloads without a separate document store"
