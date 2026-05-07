@@ -186,9 +186,9 @@
       ]
     },
     {
-      "name": "Gamma Studio",
-      "position": "Junior Developer",
-      "url": "https://gammastudio.dev",
+      "name": "Ceger",
+      "position": "Software Developer",
+      "url": "https://arquivo.pt/wayback/20200807112403/https://www.ceger.gov.pt/",
       "startDate": "2016-09",
       "endDate": "2018-05",
       "tags": ["software-engineer"],
@@ -226,61 +226,55 @@
       "studyType": "Master",
       "startDate": "06/2015",
       "endDate": "12/2021",
-      "score": "1.8 (German scale)"
+      "score": ""
     }
   ],
   "skills": [
     {
-      "name": "Backend",
-      "keywords": ["Python", "Node.js", "Go", "REST APIs", "GraphQL"],
-      "categories": ["backend"],
-      "tags": ["software-engineer"]
-    },
-    {
-      "name": "Frontend",
-      "keywords": ["React", "TypeScript", "Next.js", "Vue.js", "Tailwind CSS"],
-      "categories": ["frontend"],
-      "tags": ["software-engineer"]
-    },
-    {
-      "name": "Databases",
-      "keywords": ["PostgreSQL", "MySQL", "Redis", "MongoDB"],
-      "categories": ["database"],
-      "tags": ["software-engineer", "devops"]
-    },
-    {
-      "name": "Infrastructure",
-      "keywords": ["Kafka", "Docker", "Kubernetes", "AWS", "GitHub Actions"],
+      "name": "Cloud & Infrasutrcture",
+      "keywords": ["AWS", "Terraform", "Kubernetes", "Helm", "Docker", "Ansible"],
       "categories": ["infrastructure"],
-      "tags": ["devops"]
+      "tags": ["infrastructure", "devops"]
+    },
+    {
+      "name": "Scripting & Development",
+      "keywords": ["Python", "Go", "Bash", "PowerShell"],
+      "categories": ["programming"],
+      "tags": ["programming", "devops"]
+    },
+    {
+      "name": "CI/CD",
+      "keywords": ["Gitlab Pipelines", "Git", "ArgoCD", "mongodb"],
+      "categories": ["ci/cd"],
+      "tags": ["ci/cd", "devops"]
     }
   ],
   "languages": [
-    { "language": "English", "fluency": "Native" },
-    { "language": "Portuguese", "fluency": "Native" },
-    { "language": "Spanish", "fluency": "Medium" },
-    { "language": "Danish", "fluency": "Beginner" }
+    { "language": "english", "fluency": "native" },
+    { "language": "portuguese", "fluency": "native" },
+    { "language": "spanish", "fluency": "medium" },
+    { "language": "danish", "fluency": "beginner" }
   ],
   "certifications": [
     {
-      "name": "AWS Certified Solutions Architect – Associate",
-      "issuer": "Amazon Web Services",
+      "name": "aws certified solutions architect – associate",
+      "issuer": "amazon web services",
       "date": "2023-08",
       "url": "https://aws.amazon.com/certification/certified-solutions-architect-associate/",
       "categories": ["infrastructure"],
       "tags": ["devops"]
     },
     {
-      "name": "Certified Kubernetes Administrator (CKA)",
-      "issuer": "Cloud Native Computing Foundation",
+      "name": "certified kubernetes administrator (cka)",
+      "issuer": "cloud native computing foundation",
       "date": "2022-11",
       "url": "https://www.cncf.io/certification/cka/",
       "categories": ["infrastructure"],
       "tags": ["devops"]
     },
     {
-      "name": "HashiCorp Certified: Terraform Associate",
-      "issuer": "HashiCorp",
+      "name": "hashicorp certified: terraform associate",
+      "issuer": "hashicorp",
       "date": "2023-03",
       "url": "https://www.hashicorp.com/certification/terraform-associate",
       "categories": ["infrastructure"],
