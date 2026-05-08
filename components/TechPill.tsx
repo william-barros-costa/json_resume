@@ -5,7 +5,7 @@ interface TechPillProps {
 }
 
 export default function TechPill({ name }: TechPillProps) {
-  const { path, hex } = getTechIcon(name);
+  const { path, hex, fillRule } = getTechIcon(name);
 
   const style = {
     backgroundColor: `#${hex}18`,
@@ -28,7 +28,7 @@ export default function TechPill({ name }: TechPillProps) {
           aria-hidden="true"
           className="shrink-0"
         >
-          <path d={path} />
+          <path d={path} fillRule={fillRule} />
         </svg>
       )}
       {name}

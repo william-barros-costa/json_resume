@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Skill, Language } from "@/lib/types";
 import SectionWrapper from "./SectionWrapper";
+import { getTechIcon } from "@/lib/techIcons";
 
 interface SkillsSectionProps {
   skills: Skill[];
@@ -25,6 +26,13 @@ function matchesFilters(item: { categories?: string[]; tags?: string[] }, techFi
 
 function KeywordChip({ label, hidden, onToggle }: { label: string; hidden: boolean; onToggle: () => void }) {
   const [hovered, setHovered] = useState(false);
+  const { path, hex, fillRule } = getTechIcon(label);
+
+  const activeStyle = {
+    backgroundColor: `#${hex}18`,
+    borderColor: `#${hex}50`,
+    color: `#${hex}`,
+  };
 
   return (
     <span
@@ -32,11 +40,27 @@ function KeywordChip({ label, hidden, onToggle }: { label: string; hidden: boole
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <span className={`inline-block px-2 py-0.5 text-xs border rounded cursor-default select-none transition-colors ${
-        hidden
-          ? "text-gray-400 dark:text-gray-600 border-dashed border-gray-200 dark:border-gray-700 bg-transparent line-through opacity-50"
-          : "text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800"
-      }`}>
+      <span
+        className={`inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium rounded border cursor-default select-none transition-colors ${
+          hidden
+            ? "text-gray-400 dark:text-gray-600 border-dashed border-gray-200 dark:border-gray-700 bg-transparent line-through opacity-50"
+            : ""
+        }`}
+        style={hidden ? {} : activeStyle}
+      >
+        {!hidden && path && (
+          <svg
+            role="img"
+            viewBox="0 0 24 24"
+            width="12"
+            height="12"
+            fill="currentColor"
+            aria-hidden="true"
+            className="shrink-0"
+          >
+            <path d={path} fillRule={fillRule} />
+          </svg>
+        )}
         {label}
       </span>
       {hovered && (
