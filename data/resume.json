@@ -5,7 +5,7 @@
     "email": "william.de.barros.da.costa@gmail.com",
     "phone": "",
     "url": "https://janesmith.dev",
-    "summary": "DevOps engineer with 2 years experience building pipelines.",
+    "summary": "I am a passionate DevOps Engineer. Currently working towards B2 Danish fluency by December 2026 as a personal challenge and to better understand Nordic culture.",
     "location": {
       "city": "Lisbon",
       "countryCode": "PT",
@@ -36,7 +36,7 @@
       "highlights": [
         "Leading the consolidation of multiple tenant-specific repositories into a monorepo, delivering a CI/CD pipeline that automates deployments across configurable sets of Business Units",
         "Designing and implementing a multi-stage pipeline that includes AWS authentication, code quality and security scanning (application, repository, and Helm charts), parallel builds with library caching, Docker image and Helm chart packaging and publishing, cluster deployment, and post-deployment performance testing",
-        "Providing AWS support for a variety of operational difficulties, including as deployment failures, misconfigurations, log analysis, and environment variable management."
+        "Providing AWS support for a variety of operational difficulties, including deployment failures, misconfigurations, log analysis, and environment variable management."
       ],
       "technologies": [
         {
@@ -66,14 +66,14 @@
         {
           "name": "AWS",
           "category": "infrastructure",
-          "purpose": "Mantaining Configurations and debugging ocurring issues",
+          "purpose": "Maintaining configurations and debugging occurring issues",
           "rationale": "Helm charts allowed per-environment value overrides without duplicating manifests; chart versioning enabled reliable rollbacks"
         },
         {
           "name": "Terraform",
           "category": "infrastructure",
-          "purpose": "Kubernetes package manager for templating and versioning deployment manifests",
-          "rationale": "Help improve current infrastructure and alter/add needed configurations"
+          "purpose": "Infrastructure as code for managing and evolving cloud configurations",
+          "rationale": "Helps improve current infrastructure and alter/add needed configurations"
         }
       ]
     },
@@ -81,44 +81,44 @@
       "name": "Polarising",
       "position": "DevOps Engineer",
       "url": "https://polarising.com",
-      "startDate": "2025-4",
+      "startDate": "2025-04",
       "endDate": "2025-12",
       "tags": ["devops"],
-      "summary": "Creating a CI/CD pipeline in Gitlab to be used by over 60 maven projects",
+      "summary": "Creating a CI/CD pipeline in GitLab to be used by over 60 Maven projects.",
       "highlights": [
-        "Developed and maintained a centralized GitLab CI/CD pipeline that supports 60+ Maven-based projects, including main, release, hotfix, bugfix, and feature branches. We introduced a configurable YAML templating framework to streamline shared logic across branches, reducing duplication, and making updates easier and safer. SonarQube and automated testing have been integrated directly into the development workflow to ensure code quality and security. Created a sophisticated orchestration file that modifies pipeline behavior based on the current branch and user-defined inputs, while also providing controls through variables for skipping maven tests, skipping maven javadoc creation, and setting Maven flags",
-        "Managed Kubernetes manifests and set up automated, GitOps-style deployments across all 60+ projects with ArgoCD"
+        "Developed and maintained a centralized GitLab CI/CD pipeline that supports 60+ Maven-based projects, including main, release, hotfix, bugfix, and feature branches. Introduced a configurable YAML templating framework to streamline shared logic across branches, reducing duplication, and making updates easier and safer. SonarQube and automated testing have been integrated directly into the development workflow to ensure code quality and security. Created a sophisticated orchestration file that modifies pipeline behavior based on the current branch and user-defined inputs, while also providing controls through variables for skipping maven tests, skipping maven javadoc creation, and setting Maven flags.",
+        "Managed Kubernetes manifests and set up automated, GitOps-style deployments across all 60+ projects with ArgoCD."
       ],
       "technologies": [
         {
-          "name": "Python",
-          "category": "backend",
-          "purpose": "Core language for the ETL pipeline and REST API services",
-          "rationale": "Chosen for its rich data ecosystem (pandas, SQLAlchemy) and strong team familiarity, enabling fast iteration"
+          "name": "GitLab",
+          "category": "devops",
+          "purpose": "CI/CD pipelines for all Maven projects",
+          "rationale": "Centralized pipeline management with YAML templating"
         },
         {
-          "name": "PostgreSQL",
-          "category": "database",
-          "purpose": "Primary data store for user accounts, transactions, and audit logs",
-          "rationale": "Required ACID compliance and complex join support for financial data integrity; existing team expertise reduced onboarding time"
+          "name": "ArgoCD",
+          "category": "devops",
+          "purpose": "GitOps-style deployments across all projects",
+          "rationale": "Automated and auditable Kubernetes deployments"
         },
         {
-          "name": "Kafka",
-          "category": "infrastructure",
-          "purpose": "Event bus for decoupling microservices and handling real-time data ingestion",
-          "rationale": "Needed durable, ordered message delivery at scale without operating a custom broker; log compaction simplified state reconstruction"
-        },
-        {
-          "name": "Redis",
-          "category": "database",
-          "purpose": "Session cache and rate-limiting store",
-          "rationale": "Sub-millisecond reads solved the latency bottleneck in auth middleware; atomic operations simplified the rate-limit implementation"
+          "name": "Kubernetes",
+          "category": "devops",
+          "purpose": "Container orchestration for all workloads",
+          "rationale": "Company standard for container orchestration"
         },
         {
           "name": "Docker",
           "category": "infrastructure",
           "purpose": "Containerisation of all services for consistent dev and prod environments",
-          "rationale": "Eliminated environment drift between developer machines and CI; simplified Kubernetes deployment manifests"
+          "rationale": "Eliminated environment drift between developer machines and CI"
+        },
+        {
+          "name": "SonarQube",
+          "category": "devops",
+          "purpose": "Code quality and security scanning integrated into CI pipeline",
+          "rationale": "Enforced quality gates across all projects consistently"
         }
       ]
     },
@@ -127,124 +127,268 @@
       "position": "DevOps Engineer",
       "url": "https://www.opencascade.com/",
       "startDate": "2023-10",
-      "endDate": "2025-03",
-      "tags": ["software-engineer"],
-      "summary": "Revamping a legacy app’s infrastructure from Airflow to a proprietary system with Zookeeper and Kafka",
+      "endDate": "2025-04",
+      "tags": ["devops"],
+      "summary": "Revamping a legacy app's infrastructure from Airflow to a proprietary system with Zookeeper and Kafka.",
       "highlights": [
-        "Responsible for the migration of the infrastructure of a legacy application (written in Python, Java, Kotlin, C++, and Go) to a proprietary solution using Zookeeper and Kafka, reducing resource consumption by 10%. The responsibilities include: designing the new logic flow that includes the proprietary solution, creating Docker containers, Kubernetes Charts, configuring ArgoCD, and developing Gitlab pipelines.",
-        "Developing a solution that installed all required tools on developers, through Ansible"
+        "Responsible for the migration of the infrastructure of a legacy application (written in Python, C++, Kotlin, and Golang) to a proprietary solution using Zookeeper and Kafka, reducing resource consumption by 10%. The responsibilities include: designing the new logic flow that includes the proprietary solution, creating Docker containers, Helm Charts, and GitLab pipelines to deploy to the Kubernetes cluster.",
+        "Developing a solution that installed all required tools on developers' machines through Ansible."
       ],
       "technologies": [
         {
-          "name": "Gitlab",
-          "category": "frontend",
-          "purpose": "Primary UI framework for the customer dashboard",
-          "rationale": "Component model matched the design system structure; large ecosystem of chart and table libraries reduced build time"
-        },
-        {
-          "name": "Python",
-          "category": "frontend",
-          "purpose": "Static typing across frontend and shared API contracts",
-          "rationale": "Caught a class of runtime errors at compile time; shared types between frontend and backend eliminated contract drift"
-        },
-        {
-          "name": "Go",
-          "category": "backend",
-          "purpose": "REST API and WebSocket server for the dashboard backend",
-          "rationale": "Shared language with the frontend team reduced context switching; non-blocking I/O handled concurrent WebSocket connections efficiently"
-        },
-        {
-          "name": "ArgoCD",
-          "category": "database",
-          "purpose": "Relational store for customer data, events, and billing records",
-          "rationale": "Consistent choice with company standards; JSONB columns provided flexibility for semi-structured event payloads without a separate document store"
-        },
-        {
-          "name": "Gitlab",
-          "category": "backend",
-          "purpose": "REST API and WebSocket server for the dashboard backend",
-          "rationale": "Shared language with the frontend team reduced context switching; non-blocking I/O handled concurrent WebSocket connections efficiently"
+          "name": "GitLab",
+          "category": "devops",
+          "purpose": "CI/CD pipelines for build and deploy",
+          "rationale": "Existing company toolchain"
         },
         {
           "name": "Kubernetes",
-          "category": "database",
-          "purpose": "Relational store for customer data, events, and billing records",
-          "rationale": "Consistent choice with company standards; JSONB columns provided flexibility for semi-structured event payloads without a separate document store"
+          "category": "devops",
+          "purpose": "Container orchestration for all workloads",
+          "rationale": "Company standard for container orchestration"
         },
         {
           "name": "Docker",
-          "category": "backend",
-          "purpose": "REST API and WebSocket server for the dashboard backend",
-          "rationale": "Shared language with the frontend team reduced context switching; non-blocking I/O handled concurrent WebSocket connections efficiently"
+          "category": "devops",
+          "purpose": "Containerisation of all services",
+          "rationale": "Consistent environments across dev and production"
+        },
+        {
+          "name": "Helm",
+          "category": "devops",
+          "purpose": "Kubernetes manifest templating",
+          "rationale": "Simplified per-environment configuration management"
+        },
+        {
+          "name": "ArgoCD",
+          "category": "devops",
+          "purpose": "GitOps-style continuous delivery",
+          "rationale": "Automated and auditable Kubernetes deployments"
         },
         {
           "name": "Ansible",
-          "category": "database",
-          "purpose": "Relational store for customer data, events, and billing records",
-          "rationale": "Consistent choice with company standards; JSONB columns provided flexibility for semi-structured event payloads without a separate document store"
+          "category": "infrastructure",
+          "purpose": "Automated developer environment setup",
+          "rationale": "Idempotent, agentless tooling installation across developer machines"
+        },
+        {
+          "name": "Kafka",
+          "category": "infrastructure",
+          "purpose": "Event bus in the proprietary infrastructure solution",
+          "rationale": "Durable, ordered message delivery at scale"
+        },
+        {
+          "name": "Zookeeper",
+          "category": "infrastructure",
+          "purpose": "Distributed coordination for the proprietary infrastructure solution",
+          "rationale": "Required for Kafka cluster management and leader election"
         }
       ]
     },
     {
-      "name": "Ceger",
-      "position": "Software Developer",
+      "name": "CEGER - Centro de Gestão da Rede Informática do Governo",
+      "position": "Software Engineer",
       "url": "https://arquivo.pt/wayback/20200807112403/https://www.ceger.gov.pt/",
-      "startDate": "2016-09",
-      "endDate": "2018-05",
+      "startDate": "2022-08",
+      "endDate": "2023-10",
       "tags": ["software-engineer"],
-      "summary": "Developed features for a content management platform used by media companies.",
+      "summary": "Responsible for 5 government portals, including a nationwide application for Portugal.",
       "highlights": [
-        "Built a drag-and-drop page builder component used by 200+ clients",
-        "Optimised image delivery pipeline, cutting average page load by 1.2s"
+        "Responsible for 5 government portals, including a nationwide application for Portugal. Successfully implemented strategies to maintain active user licenses below 1,000 while ensuring nationwide participation.",
+        "Developed and maintained tools for user management using technologies such as Outsystems, C#, JavaScript, Golang, Python, and PowerShell."
       ],
       "technologies": [
         {
-          "name": "Vue.js",
-          "category": "frontend",
-          "purpose": "UI framework for the page builder and CMS editor interface",
-          "rationale": "Gentler learning curve than React for a junior team; two-way data binding simplified form-heavy CMS workflows"
-        },
-        {
-          "name": "PHP",
+          "name": "Outsystems",
           "category": "backend",
-          "purpose": "Server-side rendering and CMS API",
-          "rationale": "Existing codebase was PHP/Laravel; contributed within established patterns while learning backend fundamentals"
+          "purpose": "Low-code platform for government portal development",
+          "rationale": "Existing platform standard for Portuguese government portals"
         },
         {
-          "name": "MySQL",
+          "name": "C#",
+          "category": "backend",
+          "purpose": "User management tooling",
+          "rationale": "Existing codebase and team expertise"
+        },
+        {
+          "name": "Golang",
+          "category": "backend",
+          "purpose": "Backend services and tooling",
+          "rationale": "Performance and concurrency benefits"
+        },
+        {
+          "name": "Python",
+          "category": "backend",
+          "purpose": "Automation and tooling scripts",
+          "rationale": "Rapid development of internal tooling"
+        },
+        {
+          "name": "PowerShell",
+          "category": "backend",
+          "purpose": "Windows-based automation and user management",
+          "rationale": "Required for Windows Server administration tasks"
+        },
+        {
+          "name": "JavaScript",
+          "category": "frontend",
+          "purpose": "Frontend scripting for portal interfaces",
+          "rationale": "Standard web technology for portal UI interactions"
+        }
+      ]
+    },
+    {
+      "name": "NOVA School of Science and Technology",
+      "position": "Research Grant in Machine Learning",
+      "url": "https://www.fct.unl.pt/",
+      "startDate": "2021-10",
+      "endDate": "2022-08",
+      "tags": ["research", "machine-learning"],
+      "summary": "Machine learning research focused on code defect detection.",
+      "highlights": [
+        "Created a Convolutional Neural Network that finds bugs/defects in encoded code excerpts.",
+        "Created an AutoEncoder that encodes code excerpts into a matrix.",
+        "Created a tool to analyze codebases stored in an SQLite database."
+      ],
+      "technologies": [
+        {
+          "name": "Python",
+          "category": "backend",
+          "purpose": "Machine learning model development",
+          "rationale": "Standard language for ML research with rich ecosystem"
+        }
+      ]
+    },
+    {
+      "name": "NOVA School of Science and Technology",
+      "position": "Research Grant in Machine Learning",
+      "url": "https://www.fct.unl.pt/",
+      "startDate": "2020-01",
+      "endDate": "2021-10",
+      "tags": ["research", "machine-learning"],
+      "summary": "Machine learning research resulting in a published academic paper.",
+      "highlights": [
+        "Created and deployed a Speech Therapy Game using a Deep Neural Network Sibilant Consonants Classifier.",
+        "This work resulted in a published paper: DOI https://doi.org/10.1007/978-3-030-86230-5_47"
+      ],
+      "technologies": [
+        {
+          "name": "Python",
+          "category": "backend",
+          "purpose": "Deep neural network development and deployment",
+          "rationale": "Standard language for ML research with rich ecosystem"
+        }
+      ]
+    },
+    {
+      "name": "NOVA School of Science and Technology",
+      "position": "Teacher Assistant Fellowship",
+      "url": "https://www.fct.unl.pt/",
+      "startDate": "2019-01",
+      "endDate": "2020-01",
+      "tags": ["teaching"],
+      "summary": "Teaching assistant for undergraduate practical classes.",
+      "highlights": [
+        "Prepared and taught practical classes on Python and SQL.",
+        "Graded tests and projects."
+      ],
+      "technologies": [
+        {
+          "name": "Python",
+          "category": "backend",
+          "purpose": "Teaching language for practical classes",
+          "rationale": "Course curriculum requirement"
+        },
+        {
+          "name": "SQL",
           "category": "database",
-          "purpose": "Content and user data storage",
-          "rationale": "Standard choice within the Laravel ecosystem; existing DBA expertise in the team"
+          "purpose": "Teaching language for practical classes",
+          "rationale": "Course curriculum requirement"
+        }
+      ]
+    },
+    {
+      "name": "GMV",
+      "position": "Engineer Internship",
+      "url": "https://www.gmv.com/pt-pt",
+      "startDate": "2018-04",
+      "endDate": "2018-07",
+      "tags": ["software-engineer"],
+      "summary": "Developed an MVP with Xamarin and ArcGIS that studied the ability to identify, create and modify the information related to public constructions on the Metropolitan Area of Lisbon. It included the ability to draw and modify bounds of said constructions.",
+      "highlights": [
+        "Developed an MVP with Xamarin and ArcGIS to identify, create, and modify information related to public constructions in the Metropolitan Area of Lisbon.",
+        "Implemented the ability to draw and modify bounds of public constructions on an interactive map."
+      ],
+      "technologies": [
+        {
+          "name": "Xamarin",
+          "category": "mobile",
+          "purpose": "Cross-platform mobile application development",
+          "rationale": "Chosen for cross-platform compatibility"
+        },
+        {
+          "name": "ArcGIS",
+          "category": "gis",
+          "purpose": "Geographic information system for mapping public constructions",
+          "rationale": "Industry standard GIS platform for geospatial data"
         }
       ]
     }
   ],
   "education": [
     {
-      "institution": "Universidade Nova de Lisboa",
+      "institution": "Faculdade de Ciências e Tecnologia da Universidade Nova de Lisboa - FCT NOVA",
       "area": "Computer Science and Engineering",
-      "studyType": "Master",
-      "startDate": "06/2015",
-      "endDate": "12/2021",
-      "score": ""
+      "studyType": "Master's degree",
+      "startDate": "2018",
+      "endDate": "2021",
+      "score": "16"
+    },
+    {
+      "institution": "Faculdade de Ciências e Tecnologia da Universidade Nova de Lisboa - FCT NOVA",
+      "area": "Science and Computer Engineering",
+      "studyType": "Bachelor's degree",
+      "startDate": "2015",
+      "endDate": "2018"
+    },
+    {
+      "institution": "Brno University of Technology",
+      "area": "Computer Science and Engineering",
+      "studyType": "Master's degree",
+      "startDate": "2019",
+      "endDate": "2019",
+      "note": "Exchange program"
+    },
+    {
+      "institution": "Massachusetts Institute of Technology",
+      "area": "Data Science and Machine Learning: Making Data-Driven Decisions",
+      "studyType": "Postgraduate Degree",
+      "startDate": "2023-03",
+      "endDate": "2023-08"
+    },
+    {
+      "institution": "Youth Trainer's Academy",
+      "area": "Junior Soft Skills Trainer",
+      "studyType": "Certificate",
+      "startDate": "2019",
+      "endDate": "2019"
     }
   ],
   "skills": [
     {
-      "name": "Cloud & Infrasutrcture",
+      "name": "Cloud & Infrastructure",
       "keywords": ["AWS", "Terraform", "Kubernetes", "Helm", "Docker", "Ansible"],
       "categories": ["infrastructure"],
       "tags": ["infrastructure", "devops"]
     },
     {
       "name": "Scripting & Development",
-      "keywords": ["Python", "Go", "Bash", "PowerShell"],
+      "keywords": ["Python", "Go", "Bash", "PowerShell", "C#", "JavaScript"],
       "categories": ["programming"],
       "tags": ["programming", "devops"]
     },
     {
       "name": "CI/CD",
-      "keywords": ["Gitlab Pipelines", "Git", "ArgoCD", "mongodb"],
+      "keywords": ["GitLab Pipelines", "Git", "ArgoCD", "SonarQube"],
       "categories": ["ci/cd"],
       "tags": ["ci/cd", "devops"]
     }
@@ -252,33 +396,49 @@
   "languages": [
     { "language": "english", "fluency": "native" },
     { "language": "portuguese", "fluency": "native" },
-    { "language": "spanish", "fluency": "medium" },
+    { "language": "spanish", "fluency": "limited working" },
     { "language": "danish", "fluency": "beginner" }
   ],
   "certifications": [
     {
-      "name": "aws certified solutions architect – associate",
-      "issuer": "amazon web services",
+      "name": "AWS Certified Solutions Architect – Associate",
+      "issuer": "Amazon Web Services",
       "date": "2023-08",
       "url": "https://aws.amazon.com/certification/certified-solutions-architect-associate/",
       "categories": ["infrastructure"],
       "tags": ["devops"]
     },
     {
-      "name": "certified kubernetes administrator (cka)",
-      "issuer": "cloud native computing foundation",
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "issuer": "Cloud Native Computing Foundation",
       "date": "2022-11",
       "url": "https://www.cncf.io/certification/cka/",
       "categories": ["infrastructure"],
       "tags": ["devops"]
     },
     {
-      "name": "hashicorp certified: terraform associate",
-      "issuer": "hashicorp",
+      "name": "HashiCorp Certified: Terraform Associate",
+      "issuer": "HashiCorp",
       "date": "2023-03",
       "url": "https://www.hashicorp.com/certification/terraform-associate",
       "categories": ["infrastructure"],
       "tags": ["devops"]
+    },
+    {
+      "name": "Data Science and Machine Learning: Making Data-Driven Decisions",
+      "issuer": "Massachusetts Institute of Technology",
+      "date": "2023-08",
+      "url": "",
+      "categories": ["data-science"],
+      "tags": ["machine-learning"]
+    },
+    {
+      "name": "Google Cybersecurity Certificate",
+      "issuer": "Google",
+      "date": "",
+      "url": "",
+      "categories": ["security"],
+      "tags": ["cybersecurity"]
     }
   ]
 }
