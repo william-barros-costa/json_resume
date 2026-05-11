@@ -7,14 +7,15 @@ interface SectionWrapperProps {
   title: string;
   children: React.ReactNode;
   collapsed?: boolean;
+  muted?: boolean;
   onToggle?: () => void;
 }
 
-export default function SectionWrapper({ title, children, collapsed, onToggle }: SectionWrapperProps) {
-  const color = collapsed ? MUTED : ACCENT;
+export default function SectionWrapper({ title, children, collapsed, muted, onToggle }: SectionWrapperProps) {
+  const color = (collapsed || muted) ? MUTED : ACCENT;
 
   return (
-    <section className={collapsed ? "mb-6 print:hidden" : "mb-6"}>
+    <section className={(collapsed || muted) ? "mb-6 print:hidden" : "mb-6"}>
       <div
         className={onToggle ? "flex items-center gap-3 mb-4 cursor-pointer" : "flex items-center gap-3 mb-4"}
         onClick={onToggle}

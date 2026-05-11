@@ -93,10 +93,10 @@ export default function SkillsSection({
   const filtered = skills.filter((s) => matchesFilters(s, techFilter, jobFilter));
   const showLanguages = jobFilter.length === 0 && techFilter.length === 0;
 
-  if (filtered.length === 0 && !showLanguages && !collapsed) return null;
+  const allHidden = !showLanguages && filtered.every((s) => hiddenCategories.includes(s.name));
 
   return (
-    <SectionWrapper title="Skills" collapsed={collapsed} onToggle={onToggle}>
+    <SectionWrapper title="Skills" collapsed={collapsed} muted={allHidden} onToggle={onToggle}>
       <div className="space-y-2">
         {filtered.map((skill) => {
           const isCategoryHidden = hiddenCategories.includes(skill.name);

@@ -30,10 +30,9 @@ export default function CertificationsSection({ certifications, techFilter, jobF
     });
 
   const allHidden = filtered.every(({ originalIndex }) => hiddenIndices.includes(originalIndex));
-  if (filtered.length === 0 || allHidden) return null;
 
   return (
-    <SectionWrapper title="Certifications" collapsed={collapsed} onToggle={onToggleSection}>
+    <SectionWrapper title="Certifications" collapsed={collapsed} muted={allHidden} onToggle={onToggleSection}>
       {filtered.map(({ c, originalIndex }) => {
         const isHidden = hiddenIndices.includes(originalIndex);
 

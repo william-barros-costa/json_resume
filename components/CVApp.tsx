@@ -169,17 +169,18 @@ export default function CVApp({ resume, preset }: CVAppProps) {
           const hidden = state.hiddenSections.includes(section);
           if (section === "skills") return <SkillsSection key="skills" skills={resume.skills} languages={resume.languages} techFilter={state.techFilter} jobFilter={state.jobFilter} collapsed={hidden} onToggle={() => toggleSection("skills")} hiddenCategories={state.hiddenSkillCategories} hiddenKeywords={state.hiddenSkillKeywords} onToggleCategory={toggleSkillCategory} onToggleKeyword={toggleSkillKeyword} />;
           if (section === "certifications") return resume.certifications ? <CertificationsSection key="certifications" certifications={resume.certifications} techFilter={state.techFilter} jobFilter={state.jobFilter} hiddenIndices={state.hiddenCertifications} onToggle={toggleCertification} collapsed={hidden} onToggleSection={() => toggleSection("certifications")} /> : null;
-          if (section === "experience") return (
-            <SectionWrapper key="experience" title="Professional Experience" collapsed={hidden} onToggle={() => toggleSection("experience")}>
-              {resume.work
-                .map((entry, originalIndex) => ({ entry, originalIndex }))
-                .filter(({ entry }) => entry.type !== "academic")
-                .filter(({ entry }) => {
-                  if (state.jobFilter.length === 0) return true;
-                  if (!entry.tags || entry.tags.length === 0) return true;
-                  return entry.tags.some((tag) => state.jobFilter.includes(tag));
-                })
-                .map(({ entry, originalIndex }) => (
+          if (section === "experience") {
+            const entries = resume.work
+              .map((entry, originalIndex) => ({ entry, originalIndex }))
+              .filter(({ entry }) => entry.type !== "academic")
+              .filter(({ entry }) => {
+                if (state.jobFilter.length === 0) return true;
+                if (!entry.tags || entry.tags.length === 0) return true;
+                return entry.tags.some((tag) => state.jobFilter.includes(tag));
+              });
+            return (
+              <SectionWrapper key="experience" title="Professional Experience" collapsed={hidden} muted={entries.length === 0} onToggle={() => toggleSection("experience")}>
+                {entries.map(({ entry, originalIndex }) => (
                   <WorkEntryComponent
                     key={originalIndex}
                     entry={entry}
@@ -191,19 +192,21 @@ export default function CVApp({ resume, preset }: CVAppProps) {
                     onOverride={setEntryOverride}
                   />
                 ))}
-            </SectionWrapper>
-          );
-          if (section === "academic") return (
-            <SectionWrapper key="academic" title="Academic Experience" collapsed={hidden} onToggle={() => toggleSection("academic")}>
-              {resume.work
-                .map((entry, originalIndex) => ({ entry, originalIndex }))
-                .filter(({ entry }) => entry.type === "academic")
-                .filter(({ entry }) => {
-                  if (state.jobFilter.length === 0) return true;
-                  if (!entry.tags || entry.tags.length === 0) return true;
-                  return entry.tags.some((tag) => state.jobFilter.includes(tag));
-                })
-                .map(({ entry, originalIndex }) => (
+              </SectionWrapper>
+            );
+          }
+          if (section === "academic") {
+            const entries = resume.work
+              .map((entry, originalIndex) => ({ entry, originalIndex }))
+              .filter(({ entry }) => entry.type === "academic")
+              .filter(({ entry }) => {
+                if (state.jobFilter.length === 0) return true;
+                if (!entry.tags || entry.tags.length === 0) return true;
+                return entry.tags.some((tag) => state.jobFilter.includes(tag));
+              });
+            return (
+              <SectionWrapper key="academic" title="Academic Experience" collapsed={hidden} muted={entries.length === 0} onToggle={() => toggleSection("academic")}>
+                {entries.map(({ entry, originalIndex }) => (
                   <WorkEntryComponent
                     key={originalIndex}
                     entry={entry}
@@ -215,8 +218,9 @@ export default function CVApp({ resume, preset }: CVAppProps) {
                     onOverride={setEntryOverride}
                   />
                 ))}
-            </SectionWrapper>
-          );
+              </SectionWrapper>
+            );
+          }
           if (section === "education") return <EducationSection key="education" education={resume.education} collapsed={hidden} onToggle={() => toggleSection("education")} hiddenIndices={state.hiddenEducation} onToggleEntry={toggleEducation} />;
           return null;
         })}

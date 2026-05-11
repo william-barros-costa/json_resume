@@ -23,10 +23,9 @@ export default function EducationSection({ education, collapsed, onToggle, hidde
   if (education.length === 0) return null;
 
   const allHidden = education.every((_, i) => hiddenIndices.includes(i));
-  if (allHidden) return null;
 
   return (
-    <SectionWrapper title="Education" collapsed={collapsed} onToggle={onToggle}>
+    <SectionWrapper title="Education" collapsed={collapsed} muted={allHidden} onToggle={onToggle}>
       {education.map((e, i) => {
         const isHidden = hiddenIndices.includes(i);
 
