@@ -18,6 +18,7 @@ export interface WorkEntry {
   highlights: string[];
   technologies: Technology[];
   tags?: string[];
+  type?: "professional" | "academic";
 }
 
 export interface Education {
@@ -86,9 +87,9 @@ export interface EntryOverride {
   hidden?: boolean;
 }
 
-export type SectionKey = "skills" | "certifications" | "experience" | "education";
+export type SectionKey = "skills" | "certifications" | "experience" | "academic" | "education";
 
-export const DEFAULT_SECTION_ORDER: SectionKey[] = ["skills", "certifications", "experience", "education"];
+export const DEFAULT_SECTION_ORDER: SectionKey[] = ["skills", "certifications", "experience", "academic", "education"];
 
 export interface CVState {
   detailLevel: DetailLevel;

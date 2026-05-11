@@ -170,22 +170,48 @@ export default function CVApp({ resume, preset }: CVAppProps) {
           if (section === "skills") return <SkillsSection key="skills" skills={resume.skills} languages={resume.languages} techFilter={state.techFilter} jobFilter={state.jobFilter} collapsed={hidden} onToggle={() => toggleSection("skills")} hiddenCategories={state.hiddenSkillCategories} hiddenKeywords={state.hiddenSkillKeywords} onToggleCategory={toggleSkillCategory} onToggleKeyword={toggleSkillKeyword} />;
           if (section === "certifications") return resume.certifications ? <CertificationsSection key="certifications" certifications={resume.certifications} techFilter={state.techFilter} jobFilter={state.jobFilter} hiddenIndices={state.hiddenCertifications} onToggle={toggleCertification} collapsed={hidden} onToggleSection={() => toggleSection("certifications")} /> : null;
           if (section === "experience") return (
-            <SectionWrapper key="experience" title="Experience" collapsed={hidden} onToggle={() => toggleSection("experience")}>
+            <SectionWrapper key="experience" title="Professional Experience" collapsed={hidden} onToggle={() => toggleSection("experience")}>
               {resume.work
-                .filter((entry) => {
+                .map((entry, originalIndex) => ({ entry, originalIndex }))
+                .filter(({ entry }) => entry.type !== "academic")
+                .filter(({ entry }) => {
                   if (state.jobFilter.length === 0) return true;
                   if (!entry.tags || entry.tags.length === 0) return true;
                   return entry.tags.some((tag) => state.jobFilter.includes(tag));
                 })
-                .map((entry, i) => (
+                .map(({ entry, originalIndex }) => (
                   <WorkEntryComponent
-                    key={i}
+                    key={originalIndex}
                     entry={entry}
-                    index={i}
+                    index={originalIndex}
                     globalDetailLevel={state.detailLevel}
                     globalTechLevel={state.techLevel}
                     techFilter={state.techFilter}
-                    override={state.entryOverrides[i] ?? null}
+                    override={state.entryOverrides[originalIndex] ?? null}
+                    onOverride={setEntryOverride}
+                  />
+                ))}
+            </SectionWrapper>
+          );
+          if (section === "academic") return (
+            <SectionWrapper key="academic" title="Academic Experience" collapsed={hidden} onToggle={() => toggleSection("academic")}>
+              {resume.work
+                .map((entry, originalIndex) => ({ entry, originalIndex }))
+                .filter(({ entry }) => entry.type === "academic")
+                .filter(({ entry }) => {
+                  if (state.jobFilter.length === 0) return true;
+                  if (!entry.tags || entry.tags.length === 0) return true;
+                  return entry.tags.some((tag) => state.jobFilter.includes(tag));
+                })
+                .map(({ entry, originalIndex }) => (
+                  <WorkEntryComponent
+                    key={originalIndex}
+                    entry={entry}
+                    index={originalIndex}
+                    globalDetailLevel={state.detailLevel}
+                    globalTechLevel={state.techLevel}
+                    techFilter={state.techFilter}
+                    override={state.entryOverrides[originalIndex] ?? null}
                     onOverride={setEntryOverride}
                   />
                 ))}

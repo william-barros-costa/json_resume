@@ -242,6 +242,7 @@
       "url": "https://www.fct.unl.pt/",
       "startDate": "2021-10",
       "endDate": "2022-08",
+      "type": "academic",
       "tags": ["research", "machine-learning"],
       "summary": "Machine learning research focused on code defect detection.",
       "highlights": [
@@ -264,6 +265,7 @@
       "url": "https://www.fct.unl.pt/",
       "startDate": "2020-01",
       "endDate": "2021-10",
+      "type": "academic",
       "tags": ["research", "machine-learning"],
       "summary": "Machine learning research resulting in a published academic paper.",
       "highlights": [
@@ -285,6 +287,7 @@
       "url": "https://www.fct.unl.pt/",
       "startDate": "2019-01",
       "endDate": "2020-01",
+      "type": "academic",
       "tags": ["teaching"],
       "summary": "Teaching assistant for undergraduate practical classes.",
       "highlights": [
