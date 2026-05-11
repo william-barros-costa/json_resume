@@ -103,4 +103,5 @@ export interface CVState {
   hiddenEducation: number[];
   hiddenSkillCategories: string[];
   hiddenSkillKeywords: Record<string, string[]>;
+  showUrls: boolean;
 }

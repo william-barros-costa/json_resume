@@ -34,11 +34,11 @@ export default function TechList({ technologies, techLevel, techFilter }: TechLi
           <div className="flex items-center gap-2">
             <TechPill name={t.name} />
             {t.purpose && (
-              <span className="text-gray-600 dark:text-gray-300">{t.purpose}</span>
+              <span className="text-gray-600">{t.purpose}</span>
             )}
           </div>
           {techLevel === "rationale" && t.rationale && (
-            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 italic pl-2 border-l-2 border-gray-200 dark:border-gray-600">
+            <p className="mt-1 text-xs text-gray-500 italic pl-2 border-l-2 border-gray-200">
               {t.rationale}
             </p>
           )}

@@ -40,11 +40,11 @@ export default function CertificationsSection({ certifications, techFilter, jobF
           return (
             <div key={originalIndex} className="print:hidden group relative mb-2 last:mb-0">
               <div className="absolute right-full top-0 pr-3 pt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none group-hover:pointer-events-auto">
-                <div className="rounded border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-3 py-2">
-                  <button onClick={() => onToggle(originalIndex)} className="text-[9px] text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-100">↩ restore</button>
+                <div className="rounded border border-gray-200 bg-gray-50 px-3 py-2">
+                  <button onClick={() => onToggle(originalIndex)} className="text-[9px] text-gray-500 hover:text-gray-800">↩ restore</button>
                 </div>
               </div>
-              <span className="text-sm line-through text-gray-400 dark:text-gray-600 opacity-40">{c.name}</span>
+              <span className="text-sm line-through text-gray-400 opacity-40">{c.name}</span>
             </div>
           );
         }
@@ -52,22 +52,22 @@ export default function CertificationsSection({ certifications, techFilter, jobF
         return (
           <div key={originalIndex} className="group relative mb-3 last:mb-0">
             <div className="absolute right-full top-0 pr-3 pt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none group-hover:pointer-events-auto print:hidden">
-              <div className="rounded border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-3 py-2">
-                <button onClick={() => onToggle(originalIndex)} className="text-[9px] text-red-400 hover:text-red-600 dark:hover:text-red-300">✕ remove</button>
+              <div className="rounded border border-gray-200 bg-gray-50 px-3 py-2">
+                <button onClick={() => onToggle(originalIndex)} className="text-[9px] text-red-400 hover:text-red-600">✕ remove</button>
               </div>
             </div>
             <div className="flex items-baseline justify-between gap-4">
               <div>
                 {c.url ? (
-                  <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">
+                  <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-blue-600 hover:underline">
                     {c.name}
                   </a>
                 ) : (
-                  <span className="text-sm font-semibold text-gray-800 dark:text-gray-100">{c.name}</span>
+                  <span className="text-sm font-semibold text-gray-800">{c.name}</span>
                 )}
-                <p className="text-sm text-gray-600 dark:text-gray-300">{c.issuer}</p>
+                <p className="text-sm text-gray-600">{c.issuer}</p>
               </div>
-              <span className="text-sm text-gray-500 dark:text-gray-400 shrink-0">{formatDate(c.date)}</span>
+              <span className="text-sm text-gray-500 shrink-0">{formatDate(c.date)}</span>
             </div>
           </div>
         );

@@ -28,6 +28,7 @@ function initialState(presetName: string | null): CVState {
     hiddenEducation: [],
     hiddenSkillCategories: [],
     hiddenSkillKeywords: {},
+    showUrls: false,
   };
 }
 
@@ -38,19 +39,10 @@ interface CVAppProps {
 
 export default function CVApp({ resume, preset }: CVAppProps) {
   const [state, setState] = useState<CVState>(() => initialState(preset));
-  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-  }, [theme]);
-
-  useEffect(() => {
-    const before = () => document.documentElement.classList.remove("dark");
-    const after = () => { if (theme === "dark") document.documentElement.classList.add("dark"); };
-    window.addEventListener("beforeprint", before);
-    window.addEventListener("afterprint", after);
-    return () => { window.removeEventListener("beforeprint", before); window.removeEventListener("afterprint", after); };
-  }, [theme]);
+    document.documentElement.classList.toggle("print-show-urls", state.showUrls);
+  }, [state.showUrls]);
 
   const allCategories = useMemo(() => {
     const cats = new Set<string>();
@@ -93,6 +85,10 @@ export default function CVApp({ resume, preset }: CVAppProps) {
       ...s,
       entryOverrides: { ...s.entryOverrides, [index]: override },
     }));
+  }
+
+  function setShowUrls(show: boolean) {
+    setState((s) => ({ ...s, showUrls: show }));
   }
 
   function setSectionOrder(order: SectionKey[]) {
@@ -147,7 +143,7 @@ export default function CVApp({ resume, preset }: CVAppProps) {
 
   return (
     <div className="flex">
-      <aside className="print:hidden sticky top-0 h-screen w-52 shrink-0 overflow-y-auto border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <aside className="print:hidden sticky top-0 h-screen w-52 shrink-0 overflow-y-auto border-r border-gray-200 bg-white">
         <Toolbar
           state={state}
           allCategories={allCategories}
@@ -157,8 +153,8 @@ export default function CVApp({ resume, preset }: CVAppProps) {
           onFilterChange={setTechFilter}
           onJobFilterChange={setJobFilter}
           onSectionReorder={setSectionOrder}
-          theme={theme}
-          onThemeToggle={() => setTheme((t) => (t === "light" ? "dark" : "light"))}
+          showUrls={state.showUrls}
+          onShowUrlsToggle={setShowUrls}
         />
       </aside>
 

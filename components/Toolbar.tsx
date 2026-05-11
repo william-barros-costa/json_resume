@@ -25,8 +25,8 @@ interface ToolbarProps {
   onFilterChange: (filter: string[]) => void;
   onJobFilterChange: (filter: string[]) => void;
   onSectionReorder: (order: SectionKey[]) => void;
-  theme: "light" | "dark";
-  onThemeToggle: () => void;
+  showUrls: boolean;
+  onShowUrlsToggle: (v: boolean) => void;
 }
 
 function SegmentedControl<T extends string>({
@@ -42,16 +42,16 @@ function SegmentedControl<T extends string>({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">{label}</span>
-      <div className="flex flex-col rounded border border-gray-200 dark:border-gray-600 overflow-hidden">
+      <span className="text-xs text-gray-500 uppercase tracking-wider">{label}</span>
+      <div className="flex flex-col rounded border border-gray-200 overflow-hidden">
         {options.map((opt) => (
           <button
             key={opt}
             onClick={() => onChange(opt)}
             className={`px-2.5 py-1.5 text-xs text-left transition-colors ${
               value === opt
-                ? "bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-900"
-                : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+                ? "bg-gray-800 text-white"
+                : "bg-white text-gray-600 hover:bg-gray-50"
             }`}
           >
             {opt}
@@ -76,10 +76,10 @@ function SortableItem({ id, label }: { id: SectionKey; label: string }) {
       style={style}
       {...attributes}
       {...listeners}
-      className="flex items-center gap-2 px-2.5 py-1.5 bg-white dark:bg-gray-800 border-b last:border-b-0 border-gray-200 dark:border-gray-600 select-none cursor-grab active:cursor-grabbing"
+      className="flex items-center gap-2 px-2.5 py-1.5 bg-white border-b last:border-b-0 border-gray-200 select-none cursor-grab active:cursor-grabbing"
     >
-      <span className="text-gray-300 dark:text-gray-600 text-xs leading-none">⠿</span>
-      <span className="text-xs text-gray-700 dark:text-gray-200">{label}</span>
+      <span className="text-gray-300 text-xs leading-none">⠿</span>
+      <span className="text-xs text-gray-700">{label}</span>
     </div>
   );
 }
@@ -93,8 +93,8 @@ export default function Toolbar({
   onFilterChange,
   onJobFilterChange,
   onSectionReorder,
-  theme,
-  onThemeToggle,
+  showUrls,
+  onShowUrlsToggle,
 }: ToolbarProps) {
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 4 } }));
 
@@ -150,15 +150,15 @@ export default function Toolbar({
 
         {allCategories.length > 0 && (
           <div className="flex flex-col gap-1">
-            <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Filter</span>
+            <span className="text-xs text-gray-500 uppercase tracking-wider">Filter</span>
             <div className="flex flex-col gap-1">
               <div className="flex gap-1 flex-wrap">
                 <button
                   onClick={() => onFilterChange([])}
                   className={`px-2 py-0.5 text-xs rounded border transition-colors ${
                     state.techFilter.length === 0
-                      ? "bg-gray-800 text-white border-gray-800 dark:bg-gray-200 dark:text-gray-900 dark:border-gray-200"
-                      : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+                      ? "bg-gray-800 text-white border-gray-800"
+                      : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
                   }`}
                 >
                   all
@@ -166,14 +166,14 @@ export default function Toolbar({
                 {allCategories.map((cat) => {
                   const active = state.techFilter.includes(cat);
                   return (
-                    <span key={cat} className={`flex rounded border overflow-hidden transition-colors ${active ? "border-gray-800 dark:border-gray-300" : "border-gray-200 dark:border-gray-600"}`}>
+                    <span key={cat} className={`flex rounded border overflow-hidden transition-colors ${active ? "border-gray-800" : "border-gray-200"}`}>
                       <button
                         onClick={() => selectCategory(cat)}
                         title="Select only this filter"
                         className={`px-2 py-0.5 text-xs transition-colors ${
                           active
-                            ? "bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-900"
-                            : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+                            ? "bg-gray-800 text-white"
+                            : "bg-white text-gray-600 hover:bg-gray-50"
                         }`}
                       >
                         {cat}
@@ -183,8 +183,8 @@ export default function Toolbar({
                         title={active ? "Remove from selection" : "Add to selection"}
                         className={`px-1.5 py-0.5 text-xs border-l transition-colors ${
                           active
-                            ? "bg-gray-700 dark:bg-gray-300 text-white dark:text-gray-900 border-gray-600 dark:border-gray-400 hover:bg-gray-600 dark:hover:bg-gray-400"
-                            : "bg-white dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-200"
+                            ? "bg-gray-700 text-white border-gray-600 hover:bg-gray-600"
+                            : "bg-white text-gray-400 border-gray-200 hover:bg-gray-50 hover:text-gray-700"
                         }`}
                       >
                         {active ? "−" : "+"}
@@ -194,20 +194,20 @@ export default function Toolbar({
                 })}
               </div>
             </div>
-            <p className="text-xs text-gray-400 dark:text-gray-500">Click to select · + to add</p>
+            <p className="text-xs text-gray-400">Click to select · + to add</p>
           </div>
         )}
 
         {allJobTags.length > 0 && (
           <div className="flex flex-col gap-1">
-            <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Roles</span>
+            <span className="text-xs text-gray-500 uppercase tracking-wider">Roles</span>
             <div className="flex gap-1 flex-wrap">
               <button
                 onClick={() => onJobFilterChange([])}
                 className={`px-2 py-0.5 text-xs rounded border transition-colors ${
                   state.jobFilter.length === 0
-                    ? "bg-gray-800 text-white border-gray-800 dark:bg-gray-200 dark:text-gray-900 dark:border-gray-200"
-                    : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+                    ? "bg-gray-800 text-white border-gray-800"
+                    : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
                 }`}
               >
                 all
@@ -218,8 +218,8 @@ export default function Toolbar({
                   onClick={() => selectJobTag(tag)}
                   className={`px-2 py-0.5 text-xs rounded border transition-colors ${
                     state.jobFilter.includes(tag)
-                      ? "bg-gray-800 text-white border-gray-800 dark:bg-gray-200 dark:text-gray-900 dark:border-gray-200"
-                      : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+                      ? "bg-gray-800 text-white border-gray-800"
+                      : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
                   }`}
                 >
                   {tag}
@@ -230,10 +230,10 @@ export default function Toolbar({
         )}
 
         <div className="flex flex-col gap-1">
-          <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Sections</span>
+          <span className="text-xs text-gray-500 uppercase tracking-wider">Sections</span>
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
             <SortableContext items={state.sectionOrder} strategy={verticalListSortingStrategy}>
-              <div className="flex flex-col rounded border border-gray-200 dark:border-gray-600 overflow-hidden">
+              <div className="flex flex-col rounded border border-gray-200 overflow-hidden">
                 {state.sectionOrder.map((key) => (
                   <SortableItem key={key} id={key} label={SECTION_LABELS[key]} />
                 ))}
@@ -242,16 +242,19 @@ export default function Toolbar({
           </DndContext>
         </div>
 
-        <button
-          onClick={onThemeToggle}
-          className="w-full px-3 py-1.5 text-xs border border-gray-200 dark:border-gray-600 rounded text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-        >
-          {theme === "light" ? "☾ Dark" : "☀ Light"}
-        </button>
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={showUrls}
+            onChange={(e) => onShowUrlsToggle(e.target.checked)}
+            className="accent-gray-800"
+          />
+          <span className="text-xs text-gray-600">Show URLs in PDF</span>
+        </label>
 
-        <button
+<button
           onClick={() => window.print()}
-          className="w-full px-3 py-1.5 text-xs bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-900 rounded hover:bg-gray-700 dark:hover:bg-gray-300 transition-colors"
+          className="w-full px-3 py-1.5 text-xs bg-gray-800 text-white rounded hover:bg-gray-700 transition-colors"
         >
           Print / Save PDF
         </button>

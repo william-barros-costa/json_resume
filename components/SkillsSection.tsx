@@ -43,7 +43,7 @@ function KeywordChip({ label, hidden, onToggle }: { label: string; hidden: boole
       <span
         className={`inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium rounded border cursor-default select-none transition-colors ${
           hidden
-            ? "text-gray-400 dark:text-gray-600 border-dashed border-gray-200 dark:border-gray-700 bg-transparent line-through opacity-50"
+            ? "text-gray-400 border-dashed border-gray-200 bg-transparent line-through opacity-50"
             : ""
         }`}
         style={hidden ? {} : activeStyle}
@@ -106,14 +106,14 @@ export default function SkillsSection({
             return (
               <div key={skill.name} className="print:hidden group relative flex items-center gap-3">
                 <div className="absolute right-full top-0 pr-3 pt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none group-hover:pointer-events-auto">
-                  <div className="rounded border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-3 py-2">
+                  <div className="rounded border border-gray-200 bg-gray-50 px-3 py-2">
                     <button
                       onClick={() => onToggleCategory(skill.name)}
-                      className="text-[9px] text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-100"
+                      className="text-[9px] text-gray-500 hover:text-gray-800"
                     >↩ restore</button>
                   </div>
                 </div>
-                <span className="text-sm line-through text-gray-400 dark:text-gray-600 opacity-40 w-28 shrink-0">{skill.name}</span>
+                <span className="text-sm line-through text-gray-400 opacity-40 w-28 shrink-0">{skill.name}</span>
               </div>
             );
           }
@@ -121,14 +121,14 @@ export default function SkillsSection({
           return (
             <div key={skill.name} className="group relative flex items-start gap-3">
               <div className="print:hidden absolute right-full top-0 pr-3 pt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none group-hover:pointer-events-auto">
-                <div className="rounded border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-3 py-2">
+                <div className="rounded border border-gray-200 bg-gray-50 px-3 py-2">
                   <button
                     onClick={() => onToggleCategory(skill.name)}
-                    className="text-[9px] text-red-400 hover:text-red-600 dark:hover:text-red-300 whitespace-nowrap"
+                    className="text-[9px] text-red-400 hover:text-red-600 whitespace-nowrap"
                   >✕ remove</button>
                 </div>
               </div>
-              <span className="text-sm text-gray-600 dark:text-gray-400 w-28 shrink-0 pt-0.5">{skill.name}</span>
+              <span className="text-sm text-gray-600 w-28 shrink-0 pt-0.5">{skill.name}</span>
               <div className="flex flex-wrap gap-1.5">
                 {skill.keywords.map((kw) => (
                   <KeywordChip
@@ -144,10 +144,10 @@ export default function SkillsSection({
         })}
         {showLanguages && languages.length > 0 && (
           <div className="flex items-start gap-3">
-            <span className="text-sm text-gray-600 dark:text-gray-400 w-28 shrink-0 pt-0.5">Languages</span>
+            <span className="text-sm text-gray-600 w-28 shrink-0 pt-0.5">Languages</span>
             <div className="flex flex-wrap gap-1.5">
               {languages.map((l) => (
-                <span key={l.language} className="inline-block px-2 py-0.5 text-xs text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-800">
+                <span key={l.language} className="inline-block px-2 py-0.5 text-xs text-gray-600 border border-gray-300 rounded bg-gray-50">
                   {l.language} ({l.fluency})
                 </span>
               ))}

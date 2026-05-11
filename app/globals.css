@@ -1,17 +1,11 @@
 @import "tailwindcss";
 
-@variant dark (&:is(.dark, .dark *));
-
 :root {
   --background: #ffffff;
   --foreground: #1a1a1a;
   --accent: #8B1C1C;
 }
 
-.dark {
-  --background: #0f172a;
-  --foreground: #f1f5f9;
-}
 
 @theme inline {
   --color-background: var(--background);
@@ -82,8 +76,8 @@ body {
     margin-bottom: 0.4rem !important;
   }
 
-  /* Print href values inline — but skip decorative/UI links */
-  a[href]::after {
+  /* Print href values inline only when user opts in */
+  .print-show-urls a[href]::after {
     content: " (" attr(href) ")";
     font-size: 0.75em;
     color: #555;

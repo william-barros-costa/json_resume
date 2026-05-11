@@ -36,21 +36,21 @@ export default function Header({ basics }: HeaderProps) {
         {name}
       </h1>
 
-      <p className="text-xs tracking-[0.25em] uppercase text-gray-500 dark:text-gray-400 mb-2">
+      <p className="text-xs tracking-[0.25em] uppercase text-gray-500 mb-2">
         · {label} ·
       </p>
 
-      <div className="flex flex-wrap justify-center items-center gap-x-1 text-sm text-gray-600 dark:text-gray-300">
+      <div className="flex flex-wrap justify-center items-center gap-x-1 text-sm text-gray-600">
         {contactItems.map((item, i) => (
           <span key={i} className="flex items-center gap-x-1">
-            {i > 0 && <span className="text-gray-400 dark:text-gray-500 select-none">|</span>}
+            {i > 0 && <span className="text-gray-400 select-none">|</span>}
             {item}
           </span>
         ))}
       </div>
 
       {summary && (
-        <p className="mt-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto">
+        <p className="mt-3 text-sm text-gray-600 leading-relaxed max-w-2xl mx-auto">
           {summary}
         </p>
       )}
