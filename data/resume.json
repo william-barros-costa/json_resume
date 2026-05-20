@@ -404,42 +404,26 @@
   ],
   "certifications": [
     {
-      "name": "AWS Certified Solutions Architect – Associate",
-      "issuer": "Amazon Web Services",
-      "date": "2023-08",
-      "url": "https://aws.amazon.com/certification/certified-solutions-architect-associate/",
-      "categories": ["infrastructure"],
-      "tags": ["devops"]
-    },
-    {
-      "name": "Certified Kubernetes Administrator (CKA)",
-      "issuer": "Cloud Native Computing Foundation",
-      "date": "2022-11",
-      "url": "https://www.cncf.io/certification/cka/",
-      "categories": ["infrastructure"],
-      "tags": ["devops"]
-    },
-    {
-      "name": "HashiCorp Certified: Terraform Associate",
-      "issuer": "HashiCorp",
-      "date": "2023-03",
-      "url": "https://www.hashicorp.com/certification/terraform-associate",
-      "categories": ["infrastructure"],
+      "name": "Containers Fundamentals (LFS253)",
+      "issuer": "The Linux Foundation",
+      "date": "2026-03",
+      "url": "https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/a9372a03-3877-45c9-aefd-892a746a4db4-william-costa-0db8db15-7fb4-437a-ba97-6a4158de3225-certificate.pdf",
+      "categories": ["devops"],
       "tags": ["devops"]
     },
     {
       "name": "Data Science and Machine Learning: Making Data-Driven Decisions",
       "issuer": "Massachusetts Institute of Technology",
       "date": "2023-08",
-      "url": "",
+      "url": "https://media.licdn.com/dms/image/v2/D4D2DAQHOHJCDbMDEow/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1697882959660?e=1779732000&v=beta&t=IuflZNRbqOX3qIQaWtJ4PvtypIbAGfTaO0HD8LShcI0",
       "categories": ["data-science"],
       "tags": ["machine-learning"]
     },
     {
       "name": "Google Cybersecurity Certificate",
       "issuer": "Google",
-      "date": "",
-      "url": "",
+      "date": "2024-07",
+      "url": "https://www.credly.com/badges/fc264285-01a8-43bc-af8f-7d1c181d2e4b",
       "categories": ["security"],
       "tags": ["cybersecurity"]
     }
